@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 namespace ChromeAnalyzer
 {
     public class ChromeAnalyzer : BrowserAnalyzer.BrowserAnalyzer {
-        public ChromeAnalyzer(ChromePasswordsAnalyzer pa, ChromeCookiesAnalyzer ca,
-            ChromeDownloadHistoryAnalyzer dha, ChromeSearchHistoryAnalyzer sha,
-            ChromeBrowserHistoryAnalyzer bha, ChromeAutofillAnalyzer aa) :
-            base(pa, ca, dha, sha, bha, aa) { }
+        public ChromeAnalyzer() : base(new ChromePasswordsAnalyzer(), new ChromeCookiesAnalyzer(),
+            new ChromeDownloadHistoryAnalyzer(@"C:\Users\" + 
+                System.Security.Principal.WindowsIdentity.GetCurrent().Name + 
+                @"\AppData\Local\Google\Chrome\User Data\Default\History"),
+            new ChromeSearchHistoryAnalyzer(),
+            new ChromeBrowserHistoryAnalyzer(), new ChromeAutofillAnalyzer()) { }
     }
 }

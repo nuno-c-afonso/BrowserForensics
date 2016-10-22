@@ -11,6 +11,9 @@ namespace GUI {
         /// </summary>
         [STAThread]
         static void Main() {
+            BrowserAnalyzer.BrowserAnalyzer ba = new ChromeAnalyzer.ChromeAnalyzer();
+            ba.getDownloads();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());

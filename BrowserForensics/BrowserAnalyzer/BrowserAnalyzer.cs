@@ -27,26 +27,34 @@ namespace BrowserAnalyzer
 
         public string getPasswords() {
             //TODO
+            throw new NotImplementedException();
         }
 
         public string getCookies() {
             //TODO
+            throw new NotImplementedException();
         }
 
         public string getDownloads() {
             //TODO
+            downloads.getDownloads();
+
+            throw new NotImplementedException();
         }
 
         public string getSearches() {
             //TODO
+            throw new NotImplementedException();
         }
 
         public string getHistory() {
             //TODO
+            throw new NotImplementedException();
         }
 
         public string getAutofills() {
             //TODO
+            throw new NotImplementedException();
         }
     }
 }
