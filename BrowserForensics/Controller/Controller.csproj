@@ -44,6 +44,16 @@
     <Compile Include="Controller.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BrowserAnalyzer\BrowserAnalyzer.csproj">
+      <Project>{8a73218e-22ff-497a-a561-48b6f94191e3}</Project>
+      <Name>BrowserAnalyzer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChromeAnalyzer\ChromeAnalyzer.csproj">
+      <Project>{e3da1157-cb3c-4587-b928-ff722777b731}</Project>
+      <Name>ChromeAnalyzer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

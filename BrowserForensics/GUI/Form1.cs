@@ -10,13 +10,14 @@ using System.Windows.Forms;
 
 namespace GUI {
     public partial class Form1 : Form {
+        private Controller.Controller c;
         public Form1() {
             InitializeComponent();
+            c = new Controller.Controller();
         }
 
         private void button1_Click(object sender, EventArgs e) {
-            BrowserAnalyzer.BrowserAnalyzer ba = new ChromeAnalyzer.ChromeAnalyzer();
-            Output.Text = ba.getDownloads();
+            Output.Text = c.getDownloads();
         }
     }
 }
