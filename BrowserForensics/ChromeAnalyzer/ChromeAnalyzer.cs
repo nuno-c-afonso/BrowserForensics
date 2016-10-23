@@ -12,7 +12,7 @@ namespace ChromeAnalyzer
 
         public ChromeAnalyzer() :
             base(new ChromePasswordsAnalyzer(defaultPath + @"\User Data\Default\Login Data"),
-            new ChromeCookiesAnalyzer(),
+            new ChromeCookiesAnalyzer(defaultPath + @"\User Data\Default\Cookies"),
             new ChromeDownloadHistoryAnalyzer(defaultPath + @"\User Data\Default\History"),
             new ChromeSearchHistoryAnalyzer(),
             new ChromeBrowserHistoryAnalyzer(),

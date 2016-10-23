@@ -25,11 +25,17 @@ namespace ChromeAnalyzer {
             s = "";
             foreach (DataRow r in storedSignOns.Rows) {
 
-                // TODO: Catch the CryptographicException!!!
-
+                string pass;
                 byte[] passBytes = (byte[]) r["pass"];
-                passBytes = ProtectedData.Unprotect(passBytes, null, DataProtectionScope.CurrentUser);
-                string pass = System.Text.Encoding.Default.GetString(passBytes);
+
+                try {
+                    passBytes = ProtectedData.Unprotect(passBytes, null, DataProtectionScope.CurrentUser);
+                    pass = System.Text.Encoding.Default.GetString(passBytes);
+                } catch(CryptographicException e) {
+                    Console.WriteLine("Data could not be decrypted. An error occurred.");
+                    Console.WriteLine(e.ToString());
+                    continue; // Try the next row.
+                }
 
                 s += r["url"] + " -> " + r["username"] + " : " + pass + "\r\n";
             }

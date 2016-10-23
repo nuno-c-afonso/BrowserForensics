@@ -23,5 +23,9 @@ namespace GUI {
         private void passwords_Button_Click(object sender, EventArgs e) {
             Output.Text = c.getPasswords();
         }
+
+        private void cookies_Button_Click(object sender, EventArgs e) {
+            Output.Text = c.getCookies();
+        }
     }
 }

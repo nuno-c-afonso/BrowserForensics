@@ -26,12 +26,13 @@ namespace BrowserAnalyzer
         }
 
         public string getPasswords() {
-            return pass.getPasswords();
+            string res = pass.getPasswords();
+            return !res.Equals("") ? res : "There are no stored passwords.";
         }
 
         public string getCookies() {
-            //TODO
-            throw new NotImplementedException();
+            string res = cookies.getCookies();
+            return !res.Equals("") ? res : "There are no stored cookies.";
         }
 
         public string getDownloads() {
