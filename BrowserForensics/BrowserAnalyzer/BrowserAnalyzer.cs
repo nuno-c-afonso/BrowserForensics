@@ -36,12 +36,13 @@ namespace BrowserAnalyzer
         }
 
         public string getDownloads() {
-            return downloads.getDownloads();
+            string res = downloads.getDownloads();
+            return !res.Equals("") ? res : "There are no stored downloads.";
         }
 
         public string getSearches() {
-            //TODO
-            throw new NotImplementedException();
+            string res = searches.getSearches();
+            return !res.Equals("") ? res : "There are no stored searches.";
         }
 
         public string getHistory() {

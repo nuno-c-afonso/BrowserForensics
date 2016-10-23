@@ -35,5 +35,12 @@ namespace Controller {
                 res += ba.getCookies();
             return res;
         }
+
+        public string getSearches() {
+            string res = "";
+            foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers)
+                res += ba.getSearches();
+            return res;
+        }
     }
 }

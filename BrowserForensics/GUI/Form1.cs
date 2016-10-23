@@ -27,5 +27,9 @@ namespace GUI {
         private void cookies_Button_Click(object sender, EventArgs e) {
             Output.Text = c.getCookies();
         }
+
+        private void searches_Button_Click(object sender, EventArgs e) {
+            Output.Text = c.getSearches();
+        }
     }
 }

@@ -27,6 +27,7 @@
             this.downloads_Button = new System.Windows.Forms.Button();
             this.passwords_Button = new System.Windows.Forms.Button();
             this.cookies_Button = new System.Windows.Forms.Button();
+            this.searches_Button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Output
@@ -69,11 +70,22 @@
             this.cookies_Button.UseVisualStyleBackColor = true;
             this.cookies_Button.Click += new System.EventHandler(this.cookies_Button_Click);
             // 
+            // searches_Button
+            // 
+            this.searches_Button.Location = new System.Drawing.Point(1059, 102);
+            this.searches_Button.Name = "searches_Button";
+            this.searches_Button.Size = new System.Drawing.Size(137, 23);
+            this.searches_Button.TabIndex = 4;
+            this.searches_Button.Text = "Show searches";
+            this.searches_Button.UseVisualStyleBackColor = true;
+            this.searches_Button.Click += new System.EventHandler(this.searches_Button_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1208, 253);
+            this.Controls.Add(this.searches_Button);
             this.Controls.Add(this.cookies_Button);
             this.Controls.Add(this.passwords_Button);
             this.Controls.Add(this.downloads_Button);
@@ -91,6 +103,7 @@
         private System.Windows.Forms.Button downloads_Button;
         private System.Windows.Forms.Button passwords_Button;
         private System.Windows.Forms.Button cookies_Button;
+        private System.Windows.Forms.Button searches_Button;
     }
 }
 
