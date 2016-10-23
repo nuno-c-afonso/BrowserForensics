@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E3DA1157-CB3C-4587-B928-FF722777B731}</ProjectGuid>
+    <ProjectGuid>{F80F1F43-3216-4ABD-BD2F-ACF9503F429D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ChromeAnalyzer</RootNamespace>
-    <AssemblyName>ChromeAnalyzer</AssemblyName>
+    <RootNamespace>SQLite</RootNamespace>
+    <AssemblyName>SQLite</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,24 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChromeAnalyzer.cs" />
-    <Compile Include="ChromeAutofillAnalyzer.cs" />
-    <Compile Include="ChromeBrowserHistoryAnalyzer.cs" />
-    <Compile Include="ChromeCookiesAnalyzer.cs" />
-    <Compile Include="ChromeDownloadHistoryAnalyzer.cs" />
-    <Compile Include="ChromePasswordsAnalyzer.cs" />
-    <Compile Include="ChromeSearchHistoryAnalyzer.cs" />
+    <Compile Include="Client.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BrowserAnalyzer\BrowserAnalyzer.csproj">
-      <Project>{8a73218e-22ff-497a-a561-48b6f94191e3}</Project>
-      <Name>BrowserAnalyzer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SQLite\SQLite.csproj">
-      <Project>{f80f1f43-3216-4abd-bd2f-acf9503f429d}</Project>
-      <Name>SQLite</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
