@@ -28,6 +28,9 @@
             this.passwords_Button = new System.Windows.Forms.Button();
             this.cookies_Button = new System.Windows.Forms.Button();
             this.searches_Button = new System.Windows.Forms.Button();
+            this.browsing_Button = new System.Windows.Forms.Button();
+            this.autofills_Button = new System.Windows.Forms.Button();
+            this.all_Button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Output
@@ -80,11 +83,44 @@
             this.searches_Button.UseVisualStyleBackColor = true;
             this.searches_Button.Click += new System.EventHandler(this.searches_Button_Click);
             // 
+            // browsing_Button
+            // 
+            this.browsing_Button.Location = new System.Drawing.Point(1059, 132);
+            this.browsing_Button.Name = "browsing_Button";
+            this.browsing_Button.Size = new System.Drawing.Size(137, 26);
+            this.browsing_Button.TabIndex = 5;
+            this.browsing_Button.Text = "Show browsing";
+            this.browsing_Button.UseVisualStyleBackColor = true;
+            this.browsing_Button.Click += new System.EventHandler(this.browsing_Button_Click);
+            // 
+            // autofills_Button
+            // 
+            this.autofills_Button.Location = new System.Drawing.Point(1059, 165);
+            this.autofills_Button.Name = "autofills_Button";
+            this.autofills_Button.Size = new System.Drawing.Size(137, 23);
+            this.autofills_Button.TabIndex = 6;
+            this.autofills_Button.Text = "Show autofills";
+            this.autofills_Button.UseVisualStyleBackColor = true;
+            this.autofills_Button.Click += new System.EventHandler(this.autofills_Button_Click);
+            // 
+            // all_Button
+            // 
+            this.all_Button.Location = new System.Drawing.Point(1059, 218);
+            this.all_Button.Name = "all_Button";
+            this.all_Button.Size = new System.Drawing.Size(137, 23);
+            this.all_Button.TabIndex = 7;
+            this.all_Button.Text = "Run all";
+            this.all_Button.UseVisualStyleBackColor = true;
+            this.all_Button.Click += new System.EventHandler(this.all_Button_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1208, 253);
+            this.Controls.Add(this.all_Button);
+            this.Controls.Add(this.autofills_Button);
+            this.Controls.Add(this.browsing_Button);
             this.Controls.Add(this.searches_Button);
             this.Controls.Add(this.cookies_Button);
             this.Controls.Add(this.passwords_Button);
@@ -104,6 +140,9 @@
         private System.Windows.Forms.Button passwords_Button;
         private System.Windows.Forms.Button cookies_Button;
         private System.Windows.Forms.Button searches_Button;
+        private System.Windows.Forms.Button browsing_Button;
+        private System.Windows.Forms.Button autofills_Button;
+        private System.Windows.Forms.Button all_Button;
     }
 }
 

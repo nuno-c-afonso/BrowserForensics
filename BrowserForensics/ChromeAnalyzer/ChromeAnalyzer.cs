@@ -15,7 +15,7 @@ namespace ChromeAnalyzer
             new ChromeCookiesAnalyzer(defaultPath + @"\User Data\Default\Cookies"),
             new ChromeDownloadHistoryAnalyzer(defaultPath + @"\User Data\Default\History"),
             new ChromeSearchHistoryAnalyzer(defaultPath + @"\User Data\Default\History"),
-            new ChromeBrowserHistoryAnalyzer(),
-            new ChromeAutofillAnalyzer()) { }
+            new ChromeBrowserHistoryAnalyzer(defaultPath + @"\User Data\Default\History"),
+            new ChromeAutofillAnalyzer(defaultPath + @"\User Data\Default\Web Data")) { }
     }
 }

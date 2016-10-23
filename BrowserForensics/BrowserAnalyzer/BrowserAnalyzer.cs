@@ -46,13 +46,13 @@ namespace BrowserAnalyzer
         }
 
         public string getHistory() {
-            //TODO
-            throw new NotImplementedException();
+            string res = history.getHistory();
+            return !res.Equals("") ? res : "There are no stored browsing history.";
         }
 
         public string getAutofills() {
-            //TODO
-            throw new NotImplementedException();
+            string res = autofill.getAutofills();
+            return !res.Equals("") ? res : "There are no stored autofill history.";
         }
     }
 }

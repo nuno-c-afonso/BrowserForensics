@@ -31,5 +31,17 @@ namespace GUI {
         private void searches_Button_Click(object sender, EventArgs e) {
             Output.Text = c.getSearches();
         }
+
+        private void browsing_Button_Click(object sender, EventArgs e) {
+            Output.Text = c.getHistory();
+        }
+
+        private void autofills_Button_Click(object sender, EventArgs e) {
+            Output.Text = c.getAutofills();
+        }
+
+        private void all_Button_Click(object sender, EventArgs e) {
+            Output.Text = c.getAllInfo();
+        }
     }
 }
