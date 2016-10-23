@@ -11,11 +11,13 @@ namespace ChromeAnalyzer {
         private SQLiteConnection dbConnection;
 
         public ChromeDownloadHistoryAnalyzer(string location) {
-            dbConnection = new SQLiteConnection("Data Source=" + location + ";");
+            Console.WriteLine("\n\n" + location + "\n\n");
+            Console.ReadLine();
+
+            dbConnection = new SQLiteConnection("Data Source=" + location);
         }
 
-        //TODO: Change the returned type!!!
-        public void getDownloads() {
+        public string getDownloads() {
             DataTable completedDownloads = new DataTable();
             string s = "SELECT target_path AS path, tab_url AS url FROM downloads WHERE received_bytes = total_bytes AND total_bytes > 0;";
 
@@ -27,9 +29,12 @@ namespace ChromeAnalyzer {
             reader.Close();
             dbConnection.Close();
 
+            s = "";
             foreach(DataRow r in completedDownloads.Rows) {
-                Console.WriteLine(r["path"] + " <- " + r["url"]);
+                s += r["path"] + " <- " + r["url"] + "\r\n";
             }
+
+            return s;
         }
     }
 }

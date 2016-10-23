@@ -8,8 +8,7 @@ namespace ChromeAnalyzer
 {
     public class ChromeAnalyzer : BrowserAnalyzer.BrowserAnalyzer {
         public ChromeAnalyzer() : base(new ChromePasswordsAnalyzer(), new ChromeCookiesAnalyzer(),
-            new ChromeDownloadHistoryAnalyzer(@"C:\Users\" + 
-                System.Security.Principal.WindowsIdentity.GetCurrent().Name + 
+            new ChromeDownloadHistoryAnalyzer(@"C:\Users\" + Environment.UserName + 
                 @"\AppData\Local\Google\Chrome\User Data\Default\History"),
             new ChromeSearchHistoryAnalyzer(),
             new ChromeBrowserHistoryAnalyzer(), new ChromeAutofillAnalyzer()) { }

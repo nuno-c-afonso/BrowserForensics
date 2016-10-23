@@ -36,10 +36,7 @@ namespace BrowserAnalyzer
         }
 
         public string getDownloads() {
-            //TODO
-            downloads.getDownloads();
-
-            throw new NotImplementedException();
+            return downloads.getDownloads();
         }
 
         public string getSearches() {
