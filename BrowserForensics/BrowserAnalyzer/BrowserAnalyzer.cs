@@ -26,8 +26,7 @@ namespace BrowserAnalyzer
         }
 
         public string getPasswords() {
-            //TODO
-            throw new NotImplementedException();
+            return pass.getPasswords();
         }
 
         public string getCookies() {

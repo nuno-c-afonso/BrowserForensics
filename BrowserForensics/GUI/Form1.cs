@@ -19,5 +19,9 @@ namespace GUI {
         private void button1_Click(object sender, EventArgs e) {
             Output.Text = c.getDownloads();
         }
+
+        private void passwords_Button_Click(object sender, EventArgs e) {
+            Output.Text = c.getPasswords();
+        }
     }
 }

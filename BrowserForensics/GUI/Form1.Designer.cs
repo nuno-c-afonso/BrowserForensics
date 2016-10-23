@@ -24,7 +24,8 @@
         /// </summary>
         private void InitializeComponent() {
             this.Output = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.downloads_Button = new System.Windows.Forms.Button();
+            this.passwords_Button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Output
@@ -36,22 +37,33 @@
             this.Output.Size = new System.Drawing.Size(420, 228);
             this.Output.TabIndex = 0;
             // 
-            // button1
+            // downloads_Button
             // 
-            this.button1.Location = new System.Drawing.Point(440, 13);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(137, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Show downloads";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.downloads_Button.Location = new System.Drawing.Point(440, 13);
+            this.downloads_Button.Name = "downloads_Button";
+            this.downloads_Button.Size = new System.Drawing.Size(137, 23);
+            this.downloads_Button.TabIndex = 1;
+            this.downloads_Button.Text = "Show downloads";
+            this.downloads_Button.UseVisualStyleBackColor = true;
+            this.downloads_Button.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // passwords_Button
+            // 
+            this.passwords_Button.Location = new System.Drawing.Point(440, 42);
+            this.passwords_Button.Name = "passwords_Button";
+            this.passwords_Button.Size = new System.Drawing.Size(137, 23);
+            this.passwords_Button.TabIndex = 2;
+            this.passwords_Button.Text = "Show passwords";
+            this.passwords_Button.UseVisualStyleBackColor = true;
+            this.passwords_Button.Click += new System.EventHandler(this.passwords_Button_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(589, 253);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.passwords_Button);
+            this.Controls.Add(this.downloads_Button);
             this.Controls.Add(this.Output);
             this.Name = "Form1";
             this.Text = "BrowserForensics";
@@ -63,7 +75,8 @@
         #endregion
 
         private System.Windows.Forms.TextBox Output;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button downloads_Button;
+        private System.Windows.Forms.Button passwords_Button;
     }
 }
 

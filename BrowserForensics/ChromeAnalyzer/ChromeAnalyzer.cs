@@ -7,10 +7,15 @@ using System.Threading.Tasks;
 namespace ChromeAnalyzer
 {
     public class ChromeAnalyzer : BrowserAnalyzer.BrowserAnalyzer {
-        public ChromeAnalyzer() : base(new ChromePasswordsAnalyzer(), new ChromeCookiesAnalyzer(),
-            new ChromeDownloadHistoryAnalyzer(@"C:\Users\" + Environment.UserName + 
-                @"\AppData\Local\Google\Chrome\User Data\Default\History"),
+        private static string defaultPath = @"C:\Users\" + Environment.UserName +
+                                            @"\AppData\Local\Google\Chrome";
+
+        public ChromeAnalyzer() :
+            base(new ChromePasswordsAnalyzer(defaultPath + @"\User Data\Default\Login Data"),
+            new ChromeCookiesAnalyzer(),
+            new ChromeDownloadHistoryAnalyzer(defaultPath + @"\User Data\Default\History"),
             new ChromeSearchHistoryAnalyzer(),
-            new ChromeBrowserHistoryAnalyzer(), new ChromeAutofillAnalyzer()) { }
+            new ChromeBrowserHistoryAnalyzer(),
+            new ChromeAutofillAnalyzer()) { }
     }
 }

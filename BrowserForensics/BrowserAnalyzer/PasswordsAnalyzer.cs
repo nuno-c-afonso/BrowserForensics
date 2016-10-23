@@ -6,5 +6,6 @@ using System.Threading.Tasks;
 
 namespace BrowserAnalyzer {
     public interface PasswordsAnalyzer {
+        string getPasswords();
     }
 }
