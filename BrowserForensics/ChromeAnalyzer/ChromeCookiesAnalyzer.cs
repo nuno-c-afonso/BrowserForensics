@@ -17,7 +17,7 @@ namespace ChromeAnalyzer {
         public string getCookies() {
             DataTable storedCookies;
             string s = "SELECT host_key AS host, encrypted_value as value " +
-                       "FROM cookies;";
+                       "FROM cookies";
 
             storedCookies = client.select(s);
 

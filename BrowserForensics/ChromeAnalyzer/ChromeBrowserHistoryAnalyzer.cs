@@ -15,14 +15,16 @@ namespace ChromeAnalyzer {
 
         public string getHistory() {
             DataTable browsed;
-            string s = "SELECT url, visit_count " +
-                       "FROM urls;";
+            string s = "SELECT datetime(((visits.visit_time/1000000)-11644473600), \"unixepoch\") AS date, urls.url " +
+                       "FROM urls, visits " +
+                       "WHERE visits.url = urls.id " +
+                       "ORDER BY date ASC";
 
             browsed = client.select(s);
 
             s = "";
             foreach (DataRow r in browsed.Rows) {
-                s += r["url"] + " : visited " + r["visit_count"] + " times\r\n";
+                s += r["date"] + " : " + r["url"] + "\r\n";
             }
 
             return s;

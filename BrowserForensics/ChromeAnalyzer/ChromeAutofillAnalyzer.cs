@@ -16,7 +16,7 @@ namespace ChromeAnalyzer {
         public string getAutofills() {
             DataTable inputed;
             string s = "SELECT value " +
-                       "FROM autofill;";
+                       "FROM autofill";
 
             inputed = client.select(s);
 
