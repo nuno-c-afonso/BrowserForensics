@@ -16,7 +16,7 @@ namespace ChromeAnalyzer {
         public string getSearches() {
             DataTable searched;
             string s = "SELECT term " +
-                       "FROM keyword_search_terms;";
+                       "FROM keyword_search_terms";
 
             searched = client.select(s);
 
