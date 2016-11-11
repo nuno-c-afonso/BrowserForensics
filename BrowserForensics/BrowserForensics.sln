@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChromeAnalyzer", "ChromeAna
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLite", "SQLite\SQLite.csproj", "{F80F1F43-3216-4ABD-BD2F-ACF9503F429D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirefoxAnalyser", "FirefoxAnalyser\FirefoxAnalyser.csproj", "{0FE66CCB-D8CD-4032-AF7E-C8E614ABE1CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{F80F1F43-3216-4ABD-BD2F-ACF9503F429D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F80F1F43-3216-4ABD-BD2F-ACF9503F429D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F80F1F43-3216-4ABD-BD2F-ACF9503F429D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FE66CCB-D8CD-4032-AF7E-C8E614ABE1CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FE66CCB-D8CD-4032-AF7E-C8E614ABE1CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FE66CCB-D8CD-4032-AF7E-C8E614ABE1CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FE66CCB-D8CD-4032-AF7E-C8E614ABE1CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
