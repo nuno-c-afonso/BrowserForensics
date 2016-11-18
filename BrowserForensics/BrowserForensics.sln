@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChromeAnalyzer", "ChromeAna
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLite", "SQLite\SQLite.csproj", "{F80F1F43-3216-4ABD-BD2F-ACF9503F429D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLOBDecipher", "BLOBDecipher\BLOBDecipher.csproj", "{AAFDA337-08C1-4619-8681-84844D6C4027}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{F80F1F43-3216-4ABD-BD2F-ACF9503F429D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F80F1F43-3216-4ABD-BD2F-ACF9503F429D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F80F1F43-3216-4ABD-BD2F-ACF9503F429D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAFDA337-08C1-4619-8681-84844D6C4027}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAFDA337-08C1-4619-8681-84844D6C4027}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAFDA337-08C1-4619-8681-84844D6C4027}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAFDA337-08C1-4619-8681-84844D6C4027}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

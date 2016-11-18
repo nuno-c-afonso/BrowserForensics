@@ -8,22 +8,22 @@ using System.Threading.Tasks;
 namespace ChromeAnalyzer {
     public class ChromeSearchHistoryAnalyzer : BrowserAnalyzer.SearchHistoryAnalyzer {
         private SQLite.Client client;
+        private DataTable queryResult = null;
+        private const string QUERY =
+            "SELECT term " +
+            "FROM keyword_search_terms";
 
         public ChromeSearchHistoryAnalyzer(string location) {
             client = new SQLite.Client(location);
         }
 
         public string getSearches() {
-            DataTable searched;
-            string s = "SELECT term " +
-                       "FROM keyword_search_terms";
+            if (queryResult == null)
+                queryResult = client.select(QUERY);
 
-            searched = client.select(s);
-
-            s = "";
-            foreach (DataRow r in searched.Rows) {
+            string s = "";
+            foreach (DataRow r in queryResult.Rows)
                 s += r["term"] + "\r\n";
-            }
 
             return s;
         }
