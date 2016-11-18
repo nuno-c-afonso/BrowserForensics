@@ -9,16 +9,16 @@ using System.Security.Cryptography;
 namespace FirefoxAnalyzer {
     public class FirefoxPasswordsAnalyzer : BrowserAnalyzer.PasswordsAnalyzer {
         private SQLite.Client client;
+        string location;
 
         public FirefoxPasswordsAnalyzer(string location) {
-            client = new SQLite.Client(location);
+            //client = new SQLite.Client(location);
+            this.location = location;
         }
 
         public string getPasswords() {
-            DataTable storedSignOns;
-            string s = "SELECT signon_realm AS url, username_value as username, password_value as pass " +
-                       "FROM logins " +
-                       "WHERE username != ''";
+          /*  DataTable storedSignOns;
+            string s = "select formSubMitURL,usernameField,passwordField ,encryptedUsername,encryptedPassword,encType,datetime(timeCreated/1000,'unixepoch','localtime'),datetime(timeLastUsed/1000,'unixepoch','localtime'),datetime(timePasswordChanged/1000,'unixepoch','localtime'),timesUsed FROM moz_logins";
 
             storedSignOns = client.select(s);
 
@@ -26,21 +26,24 @@ namespace FirefoxAnalyzer {
             foreach (DataRow r in storedSignOns.Rows) {
 
                 string pass;
-                byte[] passBytes = (byte[]) r["pass"];
-
+                string user;
+                byte[] passBytes = (byte[])r["encryptedPassword"];
+                byte[] userBytes = (byte[])r["encryptedUsername"];
                 try {
                     passBytes = ProtectedData.Unprotect(passBytes, null, DataProtectionScope.CurrentUser);
                     pass = System.Text.Encoding.Default.GetString(passBytes);
+                    userBytes = ProtectedData.Unprotect(passBytes, null, DataProtectionScope.CurrentUser);
+                    user = System.Text.Encoding.Default.GetString(userBytes);
                 } catch(CryptographicException e) {
                     Console.WriteLine("Data could not be decrypted. An error occurred.");
                     Console.WriteLine(e.ToString());
                     continue; // Try the next row.
                 }
 
-                s += r["url"] + " -> " + r["username"] + " : " + pass + "\r\n";
-            }
+                s += r["formSubMitURL"] + " -> " + user + " : " + pass + "\r\n";
+            }*/
 
-            return s;
+            return location;
         }
     }
 }

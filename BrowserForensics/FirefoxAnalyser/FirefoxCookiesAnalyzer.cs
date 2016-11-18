@@ -9,36 +9,25 @@ using System.Threading.Tasks;
 namespace FirefoxAnalyzer {
     public class FirefoxCookiesAnalyzer : BrowserAnalyzer.CookiesAnalyzer {
         private SQLite.Client client;
+        string location;
 
         public FirefoxCookiesAnalyzer(string location) {
             client = new SQLite.Client(location);
+            this.location = location;
         }
 
         public string getCookies() {
             DataTable storedCookies;
-            string s = "SELECT host_key AS host, encrypted_value as value " +
-                       "FROM cookies;";
+            string s = "select baseDomain, name, value, host, path, datetime(expiry, 'unixepoch', 'localtime'), datetime(lastAccessed/1000000,'unixepoch','localtime') as last ,datetime(creationTime/1000000,'unixepoch','localtime') as creat, isSecure, isHttpOnly FROM moz_cookies";
 
             storedCookies = client.select(s);
 
             s = "";
+            s += location +"\r\n";
             foreach (DataRow r in storedCookies.Rows) {
-                string value;
-                byte[] valueBytes = (byte[])r["value"];
-
-                try {
-                    valueBytes = ProtectedData.Unprotect(valueBytes, null, DataProtectionScope.CurrentUser);
-                    value = System.Text.Encoding.Default.GetString(valueBytes);
-                }
-                catch (CryptographicException e) {
-                    Console.WriteLine("Data could not be decrypted. An error occurred.");
-                    Console.WriteLine(e.ToString());
-                    continue; // Try the next row.
-                }
-
-                s += r["host"] + " : " + value + "\r\n";
+                s += r["creat"] +" domain:" + r["baseDomain"] + " name:" + r["name"] + " value:" + r["value"] + " : "  + "\r\n";
             }
-
+            
             return s;
         }
     }

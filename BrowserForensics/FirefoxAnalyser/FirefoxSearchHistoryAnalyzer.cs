@@ -8,13 +8,15 @@ using System.Threading.Tasks;
 namespace FirefoxAnalyzer {
     public class FirefoxSearchHistoryAnalyzer : BrowserAnalyzer.SearchHistoryAnalyzer {
         private SQLite.Client client;
+        string location;
 
         public FirefoxSearchHistoryAnalyzer(string location) {
-            client = new SQLite.Client(location);
+            //client = new SQLite.Client(location);
+            this.location = location;
         }
 
         public string getSearches() {
-            DataTable searched;
+            /*DataTable searched;
             string s = "SELECT term " +
                        "FROM keyword_search_terms;";
 
@@ -23,9 +25,9 @@ namespace FirefoxAnalyzer {
             s = "";
             foreach (DataRow r in searched.Rows) {
                 s += r["term"] + "\r\n";
-            }
+            }*/
 
-            return s;
+            return location;
         }
     }
 }

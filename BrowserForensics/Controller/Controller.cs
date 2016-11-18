@@ -13,6 +13,7 @@ namespace Controller {
             // Add the wanted browsers analyzers
             // TODO: Ask for the directory. If none, choose the default one.
             analyzers.Add(new ChromeAnalyzer.ChromeAnalyzer());
+            analyzers.Add(new FirefoxAnalyser.FirefoxAnalyzer());
         }
 
         public string getDownloads() {
