@@ -25,34 +25,46 @@ namespace BrowserAnalyzer
             this.autofill = autofill;
         }
 
-        public string getPasswords() {
-            string res = pass.getPasswords();
-            return !res.Equals("") ? res : "There are no stored passwords.\r\n";
+        public List<string> getPasswords() {
+            List<string> res = pass.getPasswords();
+            if (res.Count == 0)
+                res.Add("There are no stored passwords.");
+            return res;
         }
 
-        public string getCookies() {
-            string res = cookies.getCookies();
-            return !res.Equals("") ? res : "There are no stored cookies.\r\n";
+        public List<string> getCookies() {
+            List<string> res = cookies.getCookies();
+            if (res.Count == 0)
+                res.Add("There are no stored cookies.");
+            return res;
         }
 
-        public string getDownloads() {
-            string res = downloads.getDownloads();
-            return !res.Equals("") ? res : "There are no stored downloads.\r\n";
+        public List<string> getDownloads() {
+            List<string> res = downloads.getDownloads();
+            if (res.Count == 0)
+                res.Add("There are no stored downloads.");
+            return res;
         }
 
-        public string getSearches() {
-            string res = searches.getSearches();
-            return !res.Equals("") ? res : "There are no stored searches.\r\n";
+        public List<string> getSearches() {
+            List<string> res = searches.getSearches();
+            if (res.Count == 0)
+                res.Add("There are no stored searches.");
+            return res;
         }
 
-        public string getHistory() {
-            string res = history.getHistory();
-            return !res.Equals("") ? res : "There are no stored browsing history.\r\n";
+        public List<string> getHistory() {
+            List<string> res = history.getHistory();
+            if (res.Count == 0)
+                res.Add("There is no stored browsing history.");
+            return res;
         }
 
-        public string getAutofills() {
-            string res = autofill.getAutofills();
-            return !res.Equals("") ? res : "There are no stored autofill history.\r\n";
+        public List<string> getAutofills() {
+            List<string> res = autofill.getAutofills();
+            if (res.Count == 0)
+                res.Add("There is no stored autofill history.");
+            return res;
         }
     }
 }

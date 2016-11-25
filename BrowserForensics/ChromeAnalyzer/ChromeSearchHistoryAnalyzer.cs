@@ -17,15 +17,15 @@ namespace ChromeAnalyzer {
             client = new SQLite.Client(location);
         }
 
-        public string getSearches() {
+        public List<string> getSearches() {
             if (queryResult == null)
                 queryResult = client.select(QUERY);
 
-            string s = "";
+            List<string> res = new List<string>();
             foreach (DataRow r in queryResult.Rows)
-                s += r["term"] + "\r\n";
+                res.Add("SEARCHED " + r["term"]);
 
-            return s;
+            return res;
         }
     }
 }

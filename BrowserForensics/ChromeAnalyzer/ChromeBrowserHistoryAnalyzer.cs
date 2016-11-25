@@ -19,15 +19,15 @@ namespace ChromeAnalyzer {
             client = new SQLite.Client(location);
         }
 
-        public string getHistory() {
+        public List<string> getHistory() {
             if (queryResult == null)
                 queryResult = client.select(QUERY);
 
-            string s = "";
+            List<string> res = new List<string>();
             foreach (DataRow r in queryResult.Rows)
-                s += r["date"] + " : " + r["url"] + "\r\n";
+                res.Add(r["date"] + " ACCESSED URL " + r["url"]);
             
-            return s;
+            return res;
         }
     }
 }

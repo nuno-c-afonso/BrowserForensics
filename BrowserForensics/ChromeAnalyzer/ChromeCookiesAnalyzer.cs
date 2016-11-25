@@ -24,22 +24,27 @@ namespace ChromeAnalyzer {
             client = new SQLite.Client(location);
         }
 
-        public string getCookies() {
+        private List<string> convertToList() {
+            List<string> res = new List<string>();
+
+            foreach (DataRow r in queryResult.Rows) {
+                string value = System.Text.Encoding.Default.GetString((byte[])r["value"]);
+
+                res.Add(r["creation"] + " COOKIE CREATION\r\n\tFROM HOST: " + r["host"] + "\r\n\tWITH VALUE: " + value);
+                res.Add(r["lastAccess"] + " COOKIE LAST ACCESS\r\n\tFROM HOST: " + r["host"] + "\r\n\tWITH VALUE: " + value);
+                res.Add(r["expiration"] + " COOKIE EXPIRATION DATE\r\n\tFROM HOST: " + r["host"] + "\r\n\tWITH VALUE: " + value);
+            }
+
+            return res;
+        }
+
+        public List<string> getCookies() {
             if (queryResult == null) {
                 queryResult = client.select(QUERY);
                 WindowsBLOBDecipher.decipherQueryResultField("value", queryResult);
             }
 
-            string s = "";
-            foreach (DataRow r in queryResult.Rows) {
-                string value = System.Text.Encoding.Default.GetString((byte[])r["value"]);
-
-                s += r["host"] + " : " + value +
-                "\r\n\tCreation date: " + r["creation"] +
-                "\r\n\tLast accessed: " + r["lastAccess"] +
-                "\r\n\tExpiration date: " + r["expiration"] + "\r\n";
-            }
-            return s;
+            return convertToList();
         }
     }
 }

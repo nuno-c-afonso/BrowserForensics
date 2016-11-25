@@ -17,15 +17,15 @@ namespace ChromeAnalyzer {
             client = new SQLite.Client(location);
         }
 
-        public string getAutofills() {
+        public List<string> getAutofills() {
             if (queryResult == null)
                 queryResult = client.select(QUERY);
 
-            string s = "";
+            List<string> res = new List<string>();
             foreach (DataRow r in queryResult.Rows)
-                s += r["value"] + "\r\n";
+                res.Add("AUTOFILL " + r["value"]);
 
-            return s;
+            return res;
         }
     }
 }

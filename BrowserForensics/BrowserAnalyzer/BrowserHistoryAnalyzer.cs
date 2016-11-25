@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace BrowserAnalyzer {
     public interface BrowserHistoryAnalyzer {
-        string getHistory();
+        List<string> getHistory();
     }
 }

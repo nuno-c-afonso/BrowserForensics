@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace BrowserAnalyzer {
     public interface CookiesAnalyzer {
-        string getCookies();
+        List<string> getCookies();
     }
 }
