@@ -22,15 +22,22 @@ namespace ChromeAnalyzer {
             client = new SQLite.Client(location);
         }
 
-        public string getDownloads() {
+        private List<string> convertToList() {
+            List<string> res = new List<string>();
+
+            foreach (DataRow r in queryResult.Rows) {
+                res.Add(r["start"] + " DOWNLOAD STARTED\r\n\tFROM URL: " + r["url"] + "\r\n\tTO PATH: " + r["path"]);
+                res.Add(r["end"] + " DOWNLOAD ENDED\r\n\tFROM URL: " + r["url"] + "\r\n\tTO PATH: " + r["path"]);
+            }
+
+            return res;
+        }
+
+        public List<string> getDownloads() {
             if (queryResult == null)
                 queryResult = client.select(QUERY);
 
-            string s = "";
-            foreach(DataRow r in queryResult.Rows)
-                s += r["start"] + " until " + r["end"] + " : " + r["path"] + " <- " + r["url"] + "\r\n";
-
-            return s;
+            return convertToList();
         }
     }
 }

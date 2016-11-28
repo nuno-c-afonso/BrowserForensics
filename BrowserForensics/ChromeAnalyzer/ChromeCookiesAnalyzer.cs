@@ -14,33 +14,37 @@ namespace ChromeAnalyzer {
         private const string QUERY =
             "SELECT host_key AS host, datetime(((cookies.creation_utc/1000000)-11644473600), \"unixepoch\") AS creation, " +
                 "datetime(((cookies.last_access_utc/1000000)-11644473600), \"unixepoch\") AS lastAccess, " +
-                 "datetime(((cookies.expires_utc/1000000)-11644473600), \"unixepoch\") AS expiration, " +
-                 "encrypted_value AS value " +
+                "datetime(((cookies.expires_utc/1000000)-11644473600), \"unixepoch\") AS expiration, " +
+                "encrypted_value AS value " +
             "FROM cookies " +
+            "WHERE cookies.expires_utc > 0 " +
             "ORDER BY creation ASC";
 
         public ChromeCookiesAnalyzer(string location) {
             client = new SQLite.Client(location);
         }
 
-        public string getCookies() {
+        private List<string> convertToList() {
+            List<string> res = new List<string>();
+
+            foreach (DataRow r in queryResult.Rows) {
+                string value = System.Text.Encoding.Default.GetString((byte[])r["value"]);
+
+                res.Add(r["creation"] + " COOKIE CREATION\r\n\tFROM HOST: " + r["host"] + "\r\n\tWITH VALUE: " + value);
+                res.Add(r["lastAccess"] + " COOKIE LAST ACCESS\r\n\tFROM HOST: " + r["host"] + "\r\n\tWITH VALUE: " + value);
+                res.Add(r["expiration"] + " COOKIE EXPIRATION DATE\r\n\tFROM HOST: " + r["host"] + "\r\n\tWITH VALUE: " + value);
+            }
+
+            return res;
+        }
+
+        public List<string> getCookies() {
             if (queryResult == null) {
                 queryResult = client.select(QUERY);
                 WindowsBLOBDecipher.decipherQueryResultField("value", queryResult);
             }
 
-            string s = "";
-            foreach (DataRow r in queryResult.Rows) {
-                string value = System.Text.Encoding.Default.GetString((byte[])r["value"]);
-                string expiration = (string)r["expiration"];
-                expiration = expiration.StartsWith("16") ? "the expiration date is set to zero" : expiration;
-
-                s += r["host"] + " : " + value +
-                "\r\n\tCreation date: " + r["creation"] +
-                "\r\n\tLast accessed: " + r["lastAccess"] +
-                "\r\n\tExpiration date: " + expiration + "\r\n";
-            }
-            return s;
+            return convertToList();
         }
     }
 }

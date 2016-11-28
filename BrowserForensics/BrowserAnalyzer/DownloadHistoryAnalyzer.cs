@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace BrowserAnalyzer {
     public interface DownloadHistoryAnalyzer {
-        string getDownloads();
+        List<string> getDownloads();
     }
 }

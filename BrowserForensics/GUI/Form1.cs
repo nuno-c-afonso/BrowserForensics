@@ -43,5 +43,9 @@ namespace GUI {
         private void all_Button_Click(object sender, EventArgs e) {
             Output.Text = c.getAllInfo();
         }
+
+        private void timelineButton_Click(object sender, EventArgs e) {
+            Output.Text = c.getTimeline();
+        }
     }
 }
