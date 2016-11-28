@@ -5,38 +5,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
+using BLOBDecipher;
 
 namespace ChromeAnalyzer {
     public class ChromePasswordsAnalyzer : BrowserAnalyzer.PasswordsAnalyzer {
         private SQLite.Client client;
+        private DataTable queryResult = null;
+        private const string QUERY =
+            "SELECT signon_realm AS url, username_value AS username, password_value AS pass " +
+            "FROM logins " +
+            "WHERE username != ''";
 
         public ChromePasswordsAnalyzer(string location) {
             client = new SQLite.Client(location);
         }
 
         public string getPasswords() {
-            DataTable storedSignOns;
-            string s = "SELECT signon_realm AS url, username_value as username, password_value as pass " +
-                       "FROM logins " +
-                       "WHERE username != ''";
+            if (queryResult == null) {
+                queryResult = client.select(QUERY);
+                WindowsBLOBDecipher.decipherQueryResultField("pass", queryResult);
+            }
 
-            storedSignOns = client.select(s);
-
-            s = "";
-            foreach (DataRow r in storedSignOns.Rows) {
-
-                string pass;
-                byte[] passBytes = (byte[]) r["pass"];
-
-                try {
-                    passBytes = ProtectedData.Unprotect(passBytes, null, DataProtectionScope.CurrentUser);
-                    pass = System.Text.Encoding.Default.GetString(passBytes);
-                } catch(CryptographicException e) {
-                    Console.WriteLine("Data could not be decrypted. An error occurred.");
-                    Console.WriteLine(e.ToString());
-                    continue; // Try the next row.
-                }
-
+            string s = "";
+            foreach (DataRow r in queryResult.Rows) {
+                string pass = System.Text.Encoding.Default.GetString((byte[])r["pass"]);
                 s += r["url"] + " -> " + r["username"] + " : " + pass + "\r\n";
             }
 

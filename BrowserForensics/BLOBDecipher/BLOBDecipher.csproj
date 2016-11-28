@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E3DA1157-CB3C-4587-B928-FF722777B731}</ProjectGuid>
+    <ProjectGuid>{AAFDA337-08C1-4619-8681-84844D6C4027}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ChromeAnalyzer</RootNamespace>
-    <AssemblyName>ChromeAnalyzer</AssemblyName>
+    <RootNamespace>BLOBDecipher</RootNamespace>
+    <AssemblyName>BLOBDecipher</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,9 +32,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.SQLite">
-      <HintPath>..\..\AdditionalLibs\System.Data.SQLite.dll</HintPath>
-    </Reference>
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -45,28 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChromeAnalyzer.cs" />
-    <Compile Include="ChromeAutofillAnalyzer.cs" />
-    <Compile Include="ChromeBrowserHistoryAnalyzer.cs" />
-    <Compile Include="ChromeCookiesAnalyzer.cs" />
-    <Compile Include="ChromeDownloadHistoryAnalyzer.cs" />
-    <Compile Include="ChromePasswordsAnalyzer.cs" />
-    <Compile Include="ChromeSearchHistoryAnalyzer.cs" />
+    <Compile Include="WindowsBLOBDecipher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BLOBDecipher\BLOBDecipher.csproj">
-      <Project>{aafda337-08c1-4619-8681-84844d6c4027}</Project>
-      <Name>BLOBDecipher</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BrowserAnalyzer\BrowserAnalyzer.csproj">
-      <Project>{8a73218e-22ff-497a-a561-48b6f94191e3}</Project>
-      <Name>BrowserAnalyzer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SQLite\SQLite.csproj">
-      <Project>{f80f1f43-3216-4abd-bd2f-acf9503f429d}</Project>
-      <Name>SQLite</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

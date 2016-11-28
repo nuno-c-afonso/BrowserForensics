@@ -8,22 +8,22 @@ using System.Threading.Tasks;
 namespace ChromeAnalyzer {
     public class ChromeAutofillAnalyzer : BrowserAnalyzer.AutofillAnalyzer {
         private SQLite.Client client;
+        private DataTable queryResult = null;
+        private const string QUERY =
+            "SELECT value " +
+            "FROM autofill";
 
         public ChromeAutofillAnalyzer(string location) {
             client = new SQLite.Client(location);
         }
 
         public string getAutofills() {
-            DataTable inputed;
-            string s = "SELECT value " +
-                       "FROM autofill";
+            if (queryResult == null)
+                queryResult = client.select(QUERY);
 
-            inputed = client.select(s);
-
-            s = "";
-            foreach (DataRow r in inputed.Rows) {
+            string s = "";
+            foreach (DataRow r in queryResult.Rows)
                 s += r["value"] + "\r\n";
-            }
 
             return s;
         }
