@@ -16,19 +16,19 @@ namespace FirefoxAnalyzer {
             this.location = location;
         }
 
-        public string getDownloads() {
+        public List<string>  getDownloads() {
+            List<string> output = new List<string>();
             DataTable completedDownloads;
              string s = "SELECT datetime(moz_annos.dateAdded / 1000000, 'unixepoch', 'localtime') as dateAdded, moz_annos.content  FROM moz_annos";
             
              completedDownloads = client.select(s);
 
-             s = "";
              foreach(DataRow r in completedDownloads.Rows) {
                  if( r["content"].ToString().Contains("Downloads") || r["content"].ToString().Contains("C:"))
-                 s +=r["dateAdded"] +" "+ r["content"] + "\r\n";
+                    output.Add(r["dateAdded"] +" "+ r["content"] );
              }
 
-             return s;
+             return output;
             //return location;
         }
     }

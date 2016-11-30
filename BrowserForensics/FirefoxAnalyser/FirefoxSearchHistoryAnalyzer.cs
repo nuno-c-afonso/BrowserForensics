@@ -15,7 +15,8 @@ namespace FirefoxAnalyzer {
             this.location = location;
         }
 
-        public string getSearches() {
+        public List<string> getSearches() {
+            List<string> output = new List<string>();
             /*DataTable searched;
             string s = "SELECT term " +
                        "FROM keyword_search_terms;";
@@ -26,8 +27,8 @@ namespace FirefoxAnalyzer {
             foreach (DataRow r in searched.Rows) {
                 s += r["term"] + "\r\n";
             }*/
-
-            return location;
+            output.Add(location);
+            return output;
         }
     }
 }

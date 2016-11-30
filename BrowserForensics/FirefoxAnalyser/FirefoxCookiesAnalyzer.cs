@@ -16,19 +16,18 @@ namespace FirefoxAnalyzer {
             this.location = location;
         }
 
-        public string getCookies() {
+        public List<string> getCookies() {
+            List<string> output = new List<string>();
             DataTable storedCookies;
             string s = "select baseDomain, name, value, host, path, datetime(expiry, 'unixepoch', 'localtime'), datetime(lastAccessed/1000000,'unixepoch','localtime') as last ,datetime(creationTime/1000000,'unixepoch','localtime') as creat, isSecure, isHttpOnly FROM moz_cookies";
 
             storedCookies = client.select(s);
 
-            s = "";
-            s += location +"\r\n";
             foreach (DataRow r in storedCookies.Rows) {
-                s += r["creat"] +" domain:" + r["baseDomain"] + " name:" + r["name"] + " value:" + r["value"] + " : "  + "\r\n";
+                output.Add( r["creat"] +" domain:" + r["baseDomain"] + " name:" + r["name"] + " value:" + r["value"] + " : ");
             }
             
-            return s;
+            return output;
         }
     }
 }

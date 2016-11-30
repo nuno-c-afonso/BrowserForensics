@@ -15,19 +15,17 @@ namespace FirefoxAnalyzer {
             this.location = location;
         }
 
-        public string getAutofills() {
+        public List<string> getAutofills() {
            DataTable inputed;
             string s = "select fieldname, value, timesUsed, datetime(firstUsed / 1000000, 'unixepoch', 'localtime') as first,datetime(lastUsed / 1000000, 'unixepoch', 'localtime') as last from moz_formhistory";
-
+            List<string> output = new List<string>();
             inputed = client.select(s);
 
-            s = "";
-            s += location + "\r\n";
             foreach (DataRow r in inputed.Rows) {
-                s +=r["first"]+ "  "+ "fieldname:" + r["fieldname"] + "  value:" + r["value"] + "  timesUsed:" + r["timesUsed"] + "  last:" + r["last"] + "\r\n";
+                output.Add(r["first"]+ "  "+ "fieldname:" + r["fieldname"] + "  value:" + r["value"] + "  timesUsed:" + r["timesUsed"] + "  last:" + r["last"] + "\r\n");
             }
 
-            return s;
+            return output;
         }
     }
 }
