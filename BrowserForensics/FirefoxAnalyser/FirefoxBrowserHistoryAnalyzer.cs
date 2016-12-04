@@ -1,4 +1,5 @@
 ﻿using System;
+
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -22,11 +23,15 @@ namespace FirefoxAnalyzer {
             s = "SELECT datetime(moz_historyvisits.visit_date/1000000, 'unixepoch', 'localtime')as time, moz_places.url FROM moz_places, moz_historyvisits WHERE moz_places.id = moz_historyvisits.place_id";
             browsed = client.select(s);
 
-            foreach (DataRow r in browsed.Rows) {
+            foreach (DataRow r in browsed.Rows) 
                 output.Add( r["time"] + " "+ r["url"] );
-            }
-            
+                     
             return output;
         }
+   
+       
     }
+
+
+
 }

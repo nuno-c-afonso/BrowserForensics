@@ -19,7 +19,7 @@ namespace FirefoxAnalyser
         public FirefoxAnalyzer(): base(new FirefoxPasswordsAnalyzer(fileLocation + @"\signons.sqlite"),
                 new FirefoxCookiesAnalyzer(fileLocation + @"\cookies.sqlite"),
                 new FirefoxDownloadHistoryAnalyzer(fileLocation + @"\places.sqlite"), 
-                new FirefoxSearchHistoryAnalyzer(fileLocation + @"\User Data\Default\History"),
+                new FirefoxSearchHistoryAnalyzer(fileLocation + @"\places.sqlite"),
                 new FirefoxBrowserHistoryAnalyzer(fileLocation + @"\places.sqlite"),
                 new FirefoxAutofillAnalyzer(fileLocation + @"\formhistory.sqlite")) {
             Console.WriteLine(fileLocation);
