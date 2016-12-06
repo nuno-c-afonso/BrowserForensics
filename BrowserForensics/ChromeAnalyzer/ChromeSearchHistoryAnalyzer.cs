@@ -18,12 +18,15 @@ namespace ChromeAnalyzer {
         }
 
         public List<string> getSearches() {
+            //public List<SearchDTO> getSearches() {
             if (queryResult == null)
                 queryResult = client.select(QUERY);
 
             List<string> res = new List<string>();
+            //List<SearchDTO> res = new List<DTObject>();
             foreach (DataRow r in queryResult.Rows)
                 res.Add("SEARCHED " + r["term"]);
+                //res.Add(new SearchDTO(time, "Chrome", sr["term"]));
 
             return res;
         }

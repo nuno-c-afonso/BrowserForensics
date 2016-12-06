@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DTO;
 
 namespace FirefoxAnalyzer {
     public class FirefoxSearchHistoryAnalyzer : BrowserAnalyzer.SearchHistoryAnalyzer {
@@ -16,26 +17,29 @@ namespace FirefoxAnalyzer {
         }
 
         public List<string> getSearches() {
+            //public List<SearchDTO> getSearches() {
             DataTable browsed;
             List<string> output = new List<string>();
+            //List<SearchDTO> output = new List<DTObject>();
             string s =  "SELECT datetime(moz_historyvisits.visit_date/1000000, 'unixepoch', 'localtime')as time, moz_places.url FROM moz_places, moz_historyvisits WHERE moz_places.id = moz_historyvisits.place_id";
             browsed = client.select(s);
 
             foreach (DataRow r in browsed.Rows) {
-                string search = getSearchInURL((string)r["url"]);
+                string[] search = getSearchInURL((string)r["url"]);
                 if (search != null) {
-                    string line = r["time"] + " SEARCH in " + search;
+                    string line = r["time"] + " SEARCH in " + search[0]+ search[1];
                     if(!output.Contains(line))
                         output.Add(line);
+                        //output.Add(new SearchDTO(""+r["time"], "Firefox", search[1], search[0]));
                 }
             }
 
             return output;
         }
 
-        public string getSearchInURL(string url) {
+        public string[] getSearchInURL(string url) {
             string query = "";
-            string output = null;
+            string[] output = null;
             int first = url.IndexOf("search?q=");
             if (first != -1) {
                 first += "search?q=".Length;
@@ -43,7 +47,7 @@ namespace FirefoxAnalyzer {
                 Console.WriteLine("query:" + query);
                 first = query.IndexOf("&");
                 if (first != -1) {
-                    output = "Google:" + query.Substring(0, first).Replace('+', ' ');
+                    output = new string[]{ "Google:", query.Substring(0, first).Replace('+', ' ') };
                 }
             }
             query = "";
@@ -54,7 +58,7 @@ namespace FirefoxAnalyzer {
                 Console.WriteLine("query:" + query);
                 first = query.IndexOf("&");
                 if (first == -1) {
-                    output = "Youtube:" + query.Replace('+', ' ');
+                    output = new string[] { "Youtube:", query.Replace('+', ' ') };
                 }
             }
             query = "";
@@ -65,7 +69,7 @@ namespace FirefoxAnalyzer {
                 Console.WriteLine("query:" + query);
                 first = query.IndexOf("&");
                 if (first == -1) {
-                    output = "Facebook:" + query.Replace('+', ' ');
+                    output = new string[] { "Facebook:", query.Replace('+', ' ') };
                 }
             }
             query = "";
@@ -76,7 +80,7 @@ namespace FirefoxAnalyzer {
                 Console.WriteLine("query:" + query);
                 first = query.IndexOf("&");
                 if (first == -1) {
-                    output = "Amazon:" + query.Replace('+', ' ');
+                    output = new string[] { "Amazon:", query.Replace('+', ' ') };
                 }
             }
             query = "";
@@ -84,14 +88,12 @@ namespace FirefoxAnalyzer {
             if (first != -1) {
                 first += "_nkw=".Length;
                 query = url.Substring(first);
-                Console.WriteLine("query:" + query);
                 first = query.IndexOf("&");
                 if (first != -1) {
-                    output = "Ebay:" + query.Substring(0, first).Replace('+', ' ');
+                    output = new string[] { "Ebay:", query.Substring(0, first).Replace('+', ' ') };
                 }
             }
 
-            Console.WriteLine("OUT:" + output);
             return output;
 
         }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
+using DTO;
 
 namespace FirefoxAnalyzer {
     public class FirefoxPasswordsAnalyzer : BrowserAnalyzer.PasswordsAnalyzer {
@@ -17,7 +18,10 @@ namespace FirefoxAnalyzer {
         }
 
         public List<string> getPasswords() {
+        //public List<PasswordDTO> getPasswords()
             List<string> output = new List<string>();
+            //List<PasswordDTO> output = new List<PasswordDTO>();
+
             /*  DataTable storedSignOns;
              *  
               string s = "select formSubMitURL,usernameField,passwordField ,encryptedUsername,encryptedPassword,encType,datetime(timeCreated/1000,'unixepoch','localtime'),datetime(timeLastUsed/1000,'unixepoch','localtime'),datetime(timePasswordChanged/1000,'unixepoch','localtime'),timesUsed FROM moz_logins";

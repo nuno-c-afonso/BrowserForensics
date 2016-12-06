@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
 using BLOBDecipher;
+using DTO;
 
 namespace ChromeAnalyzer {
     public class ChromePasswordsAnalyzer : BrowserAnalyzer.PasswordsAnalyzer {
@@ -21,15 +22,19 @@ namespace ChromeAnalyzer {
         }
 
         public List<string> getPasswords() {
+        //public List<PasswordDTO> getPasswords()
             if (queryResult == null) {
                 queryResult = client.select(QUERY);
                 WindowsBLOBDecipher.decipherQueryResultField("pass", queryResult);
             }
 
             List<string> res = new List<string>();
+            //List<PasswordDTO> res = new List<PasswordDTO>();
             foreach (DataRow r in queryResult.Rows) {
                 string pass = System.Text.Encoding.Default.GetString((byte[])r["pass"]);
                 res.Add("PASSWORD FROM: " + r["url"] + "\r\n\tUSERNAME: " + r["username"] + "\r\n\tPASSWORD: " + pass);
+                //TODO missing time
+                //res.Add(new PasswordDTO(string time, "Chrome", r["url"], r["username"], pass))
             }
 
             return res;

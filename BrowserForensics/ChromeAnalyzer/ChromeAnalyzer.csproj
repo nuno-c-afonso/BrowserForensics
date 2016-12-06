@@ -63,6 +63,10 @@
       <Project>{8a73218e-22ff-497a-a561-48b6f94191e3}</Project>
       <Name>BrowserAnalyzer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ClassLibrary1\DTOs.csproj">
+      <Project>{2c872a50-5df8-4ee6-8c24-914c407dcfb0}</Project>
+      <Name>DTOs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SQLite\SQLite.csproj">
       <Project>{f80f1f43-3216-4abd-bd2f-acf9503f429d}</Project>
       <Name>SQLite</Name>

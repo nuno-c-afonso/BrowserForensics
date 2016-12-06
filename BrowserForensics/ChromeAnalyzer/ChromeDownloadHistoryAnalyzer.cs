@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.Data;
+using DTO;
 
 namespace ChromeAnalyzer {
     public class ChromeDownloadHistoryAnalyzer : BrowserAnalyzer.DownloadHistoryAnalyzer {
@@ -23,11 +24,13 @@ namespace ChromeAnalyzer {
         }
 
         private List<string> convertToList() {
+        //public List<DownloadDTO>  getDownloads() {
             List<string> res = new List<string>();
-
+            //List<DownloadDTO> output = new List<DownloadDTO>();
             foreach (DataRow r in queryResult.Rows) {
                 res.Add(r["start"] + " DOWNLOAD STARTED\r\n\tFROM URL: " + r["url"] + "\r\n\tTO PATH: " + r["path"]);
                 res.Add(r["end"] + " DOWNLOAD ENDED\r\n\tFROM URL: " + r["url"] + "\r\n\tTO PATH: " + r["path"]);
+                //res.Add(new DownloadsDTO(""+r["start"], "Chrome",""+ r["url"],""+ r["path"],""));
             }
 
             return res;
