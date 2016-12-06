@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DTO;
 
 namespace ChromeAnalyzer {
     public class ChromeAutofillAnalyzer : BrowserAnalyzer.AutofillAnalyzer {
@@ -18,12 +19,15 @@ namespace ChromeAnalyzer {
         }
 
         public List<string> getAutofills() {
+        //public List<AutofillDTO> getAutofills() {
             if (queryResult == null)
                 queryResult = client.select(QUERY);
 
             List<string> res = new List<string>();
+            //List<AutofillDTO> res = new List<AutofillDTO>();
             foreach (DataRow r in queryResult.Rows)
                 res.Add("AUTOFILL " + r["value"]);
+                //res.Add(new AutofillDTO("", "Chrome",""+ r["value"]));
 
             return res;
         }

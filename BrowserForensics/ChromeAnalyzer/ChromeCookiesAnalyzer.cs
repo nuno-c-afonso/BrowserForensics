@@ -6,6 +6,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using DTO;
 
 namespace ChromeAnalyzer {
     public class ChromeCookiesAnalyzer : BrowserAnalyzer.CookiesAnalyzer {
@@ -25,7 +26,9 @@ namespace ChromeAnalyzer {
         }
 
         private List<string> convertToList() {
+        //private List<CookiesDTO> convertToList() {
             List<string> res = new List<string>();
+            //List<CookiesDTO> res = new List<CookiesDTO>();
 
             foreach (DataRow r in queryResult.Rows) {
                 string value = System.Text.Encoding.Default.GetString((byte[])r["value"]);
@@ -33,12 +36,14 @@ namespace ChromeAnalyzer {
                 res.Add(r["creation"] + " COOKIE CREATION\r\n\tFROM HOST: " + r["host"] + "\r\n\tWITH VALUE: " + value);
                 res.Add(r["lastAccess"] + " COOKIE LAST ACCESS\r\n\tFROM HOST: " + r["host"] + "\r\n\tWITH VALUE: " + value);
                 res.Add(r["expiration"] + " COOKIE EXPIRATION DATE\r\n\tFROM HOST: " + r["host"] + "\r\n\tWITH VALUE: " + value);
+                //res.Add(new CookiesDTO("" + r["creation"], "Chrome", ""+ r["host"], ""+ r["lastAccess"], ""+ r["expiration"], value));
             }
 
             return res;
         }
 
         public List<string> getCookies() {
+        //public List<CookiesDTO> getCookies() {
             if (queryResult == null) {
                 queryResult = client.select(QUERY);
                 WindowsBLOBDecipher.decipherQueryResultField("value", queryResult);

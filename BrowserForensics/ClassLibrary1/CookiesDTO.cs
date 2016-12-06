@@ -7,9 +7,16 @@ using System.Threading.Tasks;
 namespace DTO {
     public class CookiesDTO : DTObject {
         string domain;
+        string lastAccess;
+        string expiration;
+        string value;
 
-        public CookiesDTO(string time, string browser, string domain) : base(time, browser) {
+
+        public CookiesDTO(string time, string browser, string domain, string lastAccess, string expiration, string value) : base(time, browser) {
             this.domain = domain;
+            this.lastAccess = lastAccess;
+            this.expiration = expiration;
+            this.value = value;
         }
 
         public override string getType() {
