@@ -12,6 +12,7 @@ namespace FirefoxAnalyzer {
     public class FirefoxDownloadHistoryAnalyzer : BrowserAnalyzer.DownloadHistoryAnalyzer {
         private SQLite.Client client;
         string location;
+        public List<DownloadsDTO> result = null;
 
         public FirefoxDownloadHistoryAnalyzer(string location) {
             client = new SQLite.Client(location);
@@ -19,18 +20,24 @@ namespace FirefoxAnalyzer {
         }
 
         public List<DownloadsDTO>  getDownloads() {
-            List<DownloadsDTO> output = new List<DownloadsDTO>();
-            DataTable completedDownloads;
-             string s = "SELECT datetime(moz_annos.dateAdded / 1000000, 'unixepoch', 'localtime') as dateAdded, moz_annos.content  FROM moz_annos";
-            try {
-                completedDownloads = client.select(s);
+            if (result == null) {
+                List<DownloadsDTO> output = new List<DownloadsDTO>();
+                DataTable completedDownloads;
+                string s = "SELECT datetime(moz_annos.dateAdded / 1000000, 'unixepoch', 'localtime') as dateAdded, moz_annos.content  FROM moz_annos";
+                try {
+                    completedDownloads = client.select(s);
 
-                foreach (DataRow r in completedDownloads.Rows) {
-                    if (r["content"].ToString().Contains("Downloads") || r["content"].ToString().Contains("C:"))
-                        output.Add(new DownloadsDTO("" + r["dateAdded"], "Firefox", "", "", "" + r["content"]));
+                    foreach (DataRow r in completedDownloads.Rows) {
+                        if (r["content"].ToString().Contains("Downloads") || r["content"].ToString().Contains("C:"))
+                            output.Add(new DownloadsDTO("" + r["dateAdded"], "Firefox", "", "", "" + r["content"]));
+                    }
+                } catch (System.Data.SQLite.SQLiteException e) {
+                    Console.WriteLine(location + " not Found");
+                    client.dbConnection.Close();
                 }
-            } catch (System.Data.SQLite.SQLiteException e) { Console.WriteLine(location + " not Found"); }
-            return output;
+                result = output;
+            }
+            return result;
         }
     }
 }

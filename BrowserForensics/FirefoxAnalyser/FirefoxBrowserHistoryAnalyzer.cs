@@ -14,7 +14,8 @@ using System.Data.SQLite;
 namespace FirefoxAnalyzer {
     public class FirefoxBrowserHistoryAnalyzer : BrowserAnalyzer.BrowserHistoryAnalyzer {
         private SQLite.Client client;
-        string location;
+        private string location;
+        private List<HistoryDTO> result = null;
 
         public FirefoxBrowserHistoryAnalyzer(string location) {
             client = new SQLite.Client(location);
@@ -22,17 +23,23 @@ namespace FirefoxAnalyzer {
         }
 
         public List<HistoryDTO> getHistory() {
-            DataTable browsed;
-            List<HistoryDTO> output = new List<HistoryDTO>();
-            string s = "select datetime(last_visit_date/1000000,'unixepoch','localtime') as time, title, url, visit_count from moz_places ";
-            s = "SELECT datetime(moz_historyvisits.visit_date/1000000, 'unixepoch', 'localtime')as time, moz_places.url FROM moz_places, moz_historyvisits WHERE moz_places.id = moz_historyvisits.place_id";
-            try {
-                browsed = client.select(s);
+            if (result == null) {
+                DataTable browsed;
+                List<HistoryDTO> output = new List<HistoryDTO>();
+                string s = "select datetime(last_visit_date/1000000,'unixepoch','localtime') as time, title, url, visit_count from moz_places ";
+                s = "SELECT datetime(moz_historyvisits.visit_date/1000000, 'unixepoch', 'localtime')as time, moz_places.url FROM moz_places, moz_historyvisits WHERE moz_places.id = moz_historyvisits.place_id";
+                try {
+                    browsed = client.select(s);
 
-                foreach (DataRow r in browsed.Rows)
-                    output.Add(new HistoryDTO("" + r["time"], "Firefox", "" + r["url"]));
-            } catch (System.Data.SQLite.SQLiteException e) { Console.WriteLine(location + " not Found"); }
-            return output;
+                    foreach (DataRow r in browsed.Rows)
+                        output.Add(new HistoryDTO("" + r["time"], "Firefox", "" + r["url"]));
+                } catch (System.Data.SQLite.SQLiteException e) {
+                    Console.WriteLine(location + " not Found");
+                    client.dbConnection.Close();
+                }
+                result = output;
+            }
+            return result;
             }
    
        

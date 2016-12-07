@@ -12,6 +12,7 @@ namespace FirefoxAnalyzer {
     public class FirefoxCookiesAnalyzer : BrowserAnalyzer.CookiesAnalyzer {
         private SQLite.Client client;
         string location;
+        private List<CookiesDTO> result = null;
 
         public FirefoxCookiesAnalyzer(string location) {
             client = new SQLite.Client(location);
@@ -19,17 +20,23 @@ namespace FirefoxAnalyzer {
         }
 
         public List<CookiesDTO> getCookies() {
-            List<CookiesDTO> output = new List<CookiesDTO>();
-            DataTable storedCookies;
-            string s = "select baseDomain, name, value, host, path, datetime(expiry, 'unixepoch', 'localtime') as expiration, datetime(lastAccessed/1000000,'unixepoch','localtime') as last ,datetime(creationTime/1000000,'unixepoch','localtime') as creat, isSecure, isHttpOnly FROM moz_cookies";
-            try {
-                storedCookies = client.select(s);
+            if (result == null) {
+                List<CookiesDTO> output = new List<CookiesDTO>();
+                DataTable storedCookies;
+                string s = "select baseDomain, name, value, host, path, datetime(expiry, 'unixepoch', 'localtime') as expiration, datetime(lastAccessed/1000000,'unixepoch','localtime') as last ,datetime(creationTime/1000000,'unixepoch','localtime') as creat, isSecure, isHttpOnly FROM moz_cookies";
+                try {
+                    storedCookies = client.select(s);
 
-                foreach (DataRow r in storedCookies.Rows) {
-                    output.Add(new CookiesDTO("" + r["creat"], "Firefox", "" + r["baseDomain"], "" + r["last"], "" + r["expiration"], "" + r["value"]));
+                    foreach (DataRow r in storedCookies.Rows) {
+                        output.Add(new CookiesDTO("" + r["creat"], "Firefox", "" + r["baseDomain"], "" + r["last"], "" + r["expiration"], "" + r["value"]));
+                    }
+                } catch (System.Data.SQLite.SQLiteException e) {
+                    Console.WriteLine(location + " not Found");
+                    client.dbConnection.Close();
                 }
-            } catch (System.Data.SQLite.SQLiteException e) { Console.WriteLine(location + " not Found"); }
-            return output;
+                result = output;
+            }
+            return result;
         }
     }
 }
