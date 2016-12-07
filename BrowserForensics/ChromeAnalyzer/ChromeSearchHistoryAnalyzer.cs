@@ -19,7 +19,7 @@ namespace ChromeAnalyzer {
         }
 
         //public List<string> getSearches() {
-          public List<SearchDTO> getSearches() {
+          public override List<SearchDTO> getSearches() {
             if (queryResult == null)
                 queryResult = client.select(QUERY);
 

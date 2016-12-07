@@ -21,10 +21,10 @@ namespace DTO {
 
 
         public override string getType() {
-            return "Search";
+            return " SEARCH   ";
         }
         public override string getInfo() {
-            return "SEARCHED " + term +" in. "+location;
+            return "Searched " + term +" in. "+location;
         }
     }
 }

@@ -33,6 +33,7 @@
             this.all_Button = new System.Windows.Forms.Button();
             this.timelineButton = new System.Windows.Forms.Button();
             this.IncoherenciesButton = new System.Windows.Forms.Button();
+            this.domainsButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Output
@@ -41,19 +42,19 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Output.Location = new System.Drawing.Point(10, 11);
-            this.Output.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Output.Margin = new System.Windows.Forms.Padding(2);
             this.Output.Multiline = true;
             this.Output.Name = "Output";
             this.Output.ReadOnly = true;
             this.Output.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.Output.Size = new System.Drawing.Size(798, 273);
+            this.Output.Size = new System.Drawing.Size(798, 309);
             this.Output.TabIndex = 0;
             // 
             // downloads_Button
             // 
             this.downloads_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.downloads_Button.Location = new System.Drawing.Point(811, 10);
-            this.downloads_Button.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.downloads_Button.Margin = new System.Windows.Forms.Padding(2);
             this.downloads_Button.Name = "downloads_Button";
             this.downloads_Button.Size = new System.Drawing.Size(103, 19);
             this.downloads_Button.TabIndex = 1;
@@ -65,7 +66,7 @@
             // 
             this.passwords_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.passwords_Button.Location = new System.Drawing.Point(811, 33);
-            this.passwords_Button.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.passwords_Button.Margin = new System.Windows.Forms.Padding(2);
             this.passwords_Button.Name = "passwords_Button";
             this.passwords_Button.Size = new System.Drawing.Size(103, 21);
             this.passwords_Button.TabIndex = 2;
@@ -77,7 +78,7 @@
             // 
             this.cookies_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cookies_Button.Location = new System.Drawing.Point(811, 59);
-            this.cookies_Button.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cookies_Button.Margin = new System.Windows.Forms.Padding(2);
             this.cookies_Button.Name = "cookies_Button";
             this.cookies_Button.Size = new System.Drawing.Size(103, 19);
             this.cookies_Button.TabIndex = 3;
@@ -89,7 +90,7 @@
             // 
             this.searches_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.searches_Button.Location = new System.Drawing.Point(811, 83);
-            this.searches_Button.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.searches_Button.Margin = new System.Windows.Forms.Padding(2);
             this.searches_Button.Name = "searches_Button";
             this.searches_Button.Size = new System.Drawing.Size(103, 19);
             this.searches_Button.TabIndex = 4;
@@ -101,7 +102,7 @@
             // 
             this.browsing_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.browsing_Button.Location = new System.Drawing.Point(811, 107);
-            this.browsing_Button.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.browsing_Button.Margin = new System.Windows.Forms.Padding(2);
             this.browsing_Button.Name = "browsing_Button";
             this.browsing_Button.Size = new System.Drawing.Size(103, 21);
             this.browsing_Button.TabIndex = 5;
@@ -113,7 +114,7 @@
             // 
             this.autofills_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.autofills_Button.Location = new System.Drawing.Point(811, 134);
-            this.autofills_Button.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.autofills_Button.Margin = new System.Windows.Forms.Padding(2);
             this.autofills_Button.Name = "autofills_Button";
             this.autofills_Button.Size = new System.Drawing.Size(103, 19);
             this.autofills_Button.TabIndex = 6;
@@ -125,7 +126,7 @@
             // 
             this.all_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.all_Button.Location = new System.Drawing.Point(812, 157);
-            this.all_Button.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.all_Button.Margin = new System.Windows.Forms.Padding(2);
             this.all_Button.Name = "all_Button";
             this.all_Button.Size = new System.Drawing.Size(103, 38);
             this.all_Button.TabIndex = 7;
@@ -137,7 +138,7 @@
             // 
             this.timelineButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.timelineButton.Location = new System.Drawing.Point(811, 203);
-            this.timelineButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.timelineButton.Margin = new System.Windows.Forms.Padding(2);
             this.timelineButton.Name = "timelineButton";
             this.timelineButton.Size = new System.Drawing.Size(103, 38);
             this.timelineButton.TabIndex = 8;
@@ -157,11 +158,24 @@
             this.IncoherenciesButton.UseVisualStyleBackColor = true;
             this.IncoherenciesButton.Click += new System.EventHandler(this.incoherenciesButton_Click);
             // 
+            // domainsButton
+            // 
+            this.domainsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.domainsButton.Location = new System.Drawing.Point(812, 287);
+            this.domainsButton.Margin = new System.Windows.Forms.Padding(2);
+            this.domainsButton.Name = "domainsButton";
+            this.domainsButton.Size = new System.Drawing.Size(103, 38);
+            this.domainsButton.TabIndex = 10;
+            this.domainsButton.Text = "All domains found";
+            this.domainsButton.UseVisualStyleBackColor = true;
+            this.domainsButton.Click += new System.EventHandler(this.domainButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(923, 293);
+            this.ClientSize = new System.Drawing.Size(923, 329);
+            this.Controls.Add(this.domainsButton);
             this.Controls.Add(this.IncoherenciesButton);
             this.Controls.Add(this.timelineButton);
             this.Controls.Add(this.all_Button);
@@ -172,7 +186,7 @@
             this.Controls.Add(this.passwords_Button);
             this.Controls.Add(this.downloads_Button);
             this.Controls.Add(this.Output);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "BrowserForensics";
             this.ResumeLayout(false);
@@ -192,6 +206,7 @@
         private System.Windows.Forms.Button all_Button;
         private System.Windows.Forms.Button timelineButton;
         private System.Windows.Forms.Button IncoherenciesButton;
+        private System.Windows.Forms.Button domainsButton;
     }
 }
 

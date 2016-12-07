@@ -85,7 +85,7 @@ namespace Controller {
                 foreach (HistoryDTO dto in ba.getHistory())
                     l.Add(dto.getFullString());
                 foreach (CookiesDTO dto in ba.getCookies())
-                    l.Add(dto.getFullString());
+                    l.Add(dto.getSmallString());
                 foreach (DownloadsDTO dto in ba.getDownloads())
                     l.Add(dto.getFullString());
                 foreach (PasswordDTO dto in ba.getPasswords())
@@ -99,28 +99,91 @@ namespace Controller {
                 result += s ;
             return result;
         }
-    
+
         public string detectIncoherencies() {
-            List<string> l = new List<string>();
-            List<CookiesDTO> cookies = new List<CookiesDTO>();
-            List<HistoryDTO> history = new List<HistoryDTO>();
             string result = "";
+            List<string> l = new List<string>();
+            List<string[]> history = new List<string[]>();
+            List<string[]> cookies = new List<string[]>();
 
             foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers) {
-                cookies = ba.getCookies().Distinct().OrderBy(o => o.getTime()).ToList();
-                history = ba.getHistory().Distinct().OrderBy(o => o.getTime()).ToList();
+                foreach (HistoryDTO dto in ba.getHistory())
+                    history.Add(new string[] { dto.getTime(), dto.getDomain() });
+                foreach (CookiesDTO dto in ba.getCookies())
+                    cookies.Add(new string[] { dto.getTime(), dto.getDomain() });
+            }
+            history = history.ToList().OrderBy(o => o[0]).ToList();
+            cookies = cookies.ToList().OrderBy(o => o[0]).ToList();
 
-                foreach (HistoryDTO dto in history)
-                    l.Add(dto.getTime() + " " + dto.getDomain() + " History" + "\r\n");
-                foreach (CookiesDTO dto in cookies)
-                    l.Add(dto.getTime() + " " + dto.getDomain() + " Cookie" + "\r\n");
+            List<string[]> history2 = new List<string[]>();
+            string[] prev = { "x", "x" };
+            foreach (string[] x in history)
+                if (x[0] != prev[0] || x[0] != prev[0]) {
+                    history2.Add(x);
+                    prev = x;
+                }
+
+            List<string[]> cookies2 = new List<string[]>();
+            prev =new string[] { "x", "x" };
+            foreach (string[] x in cookies)
+                if (x[0] != prev[0] || x[0] != prev[0]) {
+                    cookies2.Add(x);
+                    prev = x;
+                }
+  
+            Boolean found = false;
+            foreach (string[] cookie in cookies2) {
+                found = false;
+                foreach (string[] visit in history2)
+                    if (visit[1].EndsWith(cookie[1]))
+                        found = true;
+                if (!found)
+                    l.Add(cookie[1]);
+            }
+            l = l.Distinct().ToList();
+
+            result += "-->Have been found cookies for the next domains that dont are in the history:\r\n";
+            foreach (string s in l)
+                result += s+ "\r\n";
+            return result;
+
+        }
+
+        public string getAllDomains() {
+            List<string> l = new List<string>();
+
+            foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers) {
+                foreach (HistoryDTO dto in ba.getHistory())
+                    l.Add(dto.getDomain());
+
+                foreach (CookiesDTO dto in ba.getCookies())
+                    l.Add(dto.getDomain());
+
+                foreach (DownloadsDTO dto in ba.getDownloads())
+                    l.Add(dto.getDomain());
+
+                foreach (PasswordDTO dto in ba.getPasswords())
+                    l.Add(dto.getDomain());
             }
 
+            l.Sort();
 
-            //l.Sort();
-            foreach (string s in l)
-                result += s;
+            List<string> lout = new List<string>();
+            string prev = "";
+            foreach (string x in l)
+                if (x != prev) {
+                    lout.Add(x);
+                    prev = x;
+                }
+
+            string result = "-->All the Domains found in browser \r\n";
+            foreach (string s in lout)
+                result += s + "\r\n";
             return result;
+
+            return result;
+
+
         }
     }
 }

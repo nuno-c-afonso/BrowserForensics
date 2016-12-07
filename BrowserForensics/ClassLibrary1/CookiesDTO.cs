@@ -23,11 +23,16 @@ namespace DTO {
             return domain;
         }
 
+        public string getSmallString() {
+            return getTime() + " " + getType() + " " + "domain: " + domain + "\r\n" ;
+        }
+
         public override string getType() {
-            return "Cookie";
+            return " COOKIE   ";
         }
         public override string getInfo() {
-            return "domain: "+domain;
+            return "domain: "+domain + "\r\n" + " Value:" + value + "\r\n";
         }
+        
     }
 }

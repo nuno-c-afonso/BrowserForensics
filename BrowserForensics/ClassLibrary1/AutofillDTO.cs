@@ -20,7 +20,7 @@ namespace DTO {
         }
 
         public override string getType() {
-            return "Auto Fill";
+            return " AUTOFILL ";
         }
         public override string getInfo() {
             return "FieldName:"+ fieldname+ " Value: "+value;

@@ -51,5 +51,8 @@ namespace GUI {
         private void incoherenciesButton_Click(object sender, EventArgs e) {
             Output.Text = c.detectIncoherencies();
         }
+        private void domainButton_Click(object sender, EventArgs e) {
+            Output.Text = c.getAllDomains();
+        }
     }
 }

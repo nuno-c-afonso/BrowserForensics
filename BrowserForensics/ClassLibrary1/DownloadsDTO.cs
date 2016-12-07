@@ -9,18 +9,28 @@ namespace DTO {
         string url;
         string path;
         string file;
+        string domain = "";
 
         public DownloadsDTO(string time, string browser, string url, string path, string file): base(time, browser) {
             this.url = url;
             this.path =path;
             this.file = file;
+            if (url != null && url != "") {
+                Uri myUri = new Uri(url);
+                string auxdomain = myUri.Host;
+                domain = auxdomain.Replace("www.", "");
+            }
+        }
+
+        public string getDomain() {
+            return domain;
         }
 
         public override string getType() {
-            return "Download";
+            return " DOWNLOAD ";
         }
         public override string getInfo() {
-            return file+ " FROM URL: " + url + "\r\n\tTO PATH: " + path;
+            return file+ " from URL: " + url + "\r\n\tto path: " + path;
         }
     }
 }

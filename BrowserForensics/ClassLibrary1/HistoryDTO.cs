@@ -7,23 +7,25 @@ using System.Threading.Tasks;
 namespace DTO {
     public class HistoryDTO : DTObject {
         string url;
-        string domain;
+        string domain = "";
 
         public HistoryDTO(string time, string browser, string url) : base(time, browser) {
             this.url = url;
-            Uri myUri = new Uri(url);
-            string auxdomain = myUri.Host;
-            domain = auxdomain.Replace("www.", "");
+            if (url != null && url != "") {
+                Uri myUri = new Uri(url);
+                string auxdomain = myUri.Host;
+                domain = auxdomain.Replace("www.", "");
+            }
         }
         public string getDomain() {
             return domain;
         }
 
         public override string getType() {
-            return "History";
+            return " HISTORY ";
         }
         public override string getInfo() {
-            return "ACCESSED URL " + url;
+            return "Acessed URL: " + url;
         }
     }
 }
