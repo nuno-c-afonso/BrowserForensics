@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
 using DTO;
+using System.Data.SQLite;
 
 namespace FirefoxAnalyzer {
     public class FirefoxPasswordsAnalyzer : BrowserAnalyzer.PasswordsAnalyzer {

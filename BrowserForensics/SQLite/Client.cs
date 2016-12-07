@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SQLite {
     public class Client {
-        private SQLiteConnection dbConnection;
+        public SQLiteConnection dbConnection;
 
         public Client(string location) {
             dbConnection = new SQLiteConnection("Data Source=" + location);
@@ -16,7 +16,6 @@ namespace SQLite {
 
         public DataTable select(string query) {
             DataTable table = new DataTable();
-
             dbConnection.Open();
             SQLiteCommand command = new SQLiteCommand(dbConnection);
             command.CommandText = query;

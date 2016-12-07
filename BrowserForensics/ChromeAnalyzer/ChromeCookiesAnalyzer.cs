@@ -7,11 +7,13 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using DTO;
+using System.Data.SQLite;
 
 namespace ChromeAnalyzer {
     public class ChromeCookiesAnalyzer : BrowserAnalyzer.CookiesAnalyzer {
         private SQLite.Client client;
         private DataTable queryResult = null;
+        private string location;
         private const string QUERY =
             "SELECT host_key AS host, datetime(((cookies.creation_utc/1000000)-11644473600), \"unixepoch\") AS creation, " +
                 "datetime(((cookies.last_access_utc/1000000)-11644473600), \"unixepoch\") AS lastAccess, " +
@@ -20,9 +22,11 @@ namespace ChromeAnalyzer {
             "FROM cookies " +
             "WHERE cookies.expires_utc > 0 " +
             "ORDER BY creation ASC";
+        private List<CookiesDTO> result = null;
 
         public ChromeCookiesAnalyzer(string location) {
             client = new SQLite.Client(location);
+            this.location = location;
         }
 
         //private List<string> convertToList() {
@@ -44,12 +48,21 @@ namespace ChromeAnalyzer {
 
         //public List<string> getCookies() {
         public List<CookiesDTO> getCookies() {
-            if (queryResult == null) {
-                queryResult = client.select(QUERY);
-                WindowsBLOBDecipher.decipherQueryResultField("value", queryResult);
+            if (result == null) {
+                List<CookiesDTO> res = new List<CookiesDTO>();
+                try {
+                    
+                    queryResult = client.select(QUERY);
+                    WindowsBLOBDecipher.decipherQueryResultField("value", queryResult);
+                    res = convertToList();
+                
+                } catch (System.Data.SQLite.SQLiteException e) {
+                    Console.WriteLine(location + " not Found");
+                    client.dbConnection.Close();
+                }
+                result = res;
             }
-
-            return convertToList();
+            return result;
         }
     }
 }

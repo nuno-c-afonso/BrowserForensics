@@ -10,11 +10,25 @@ namespace Controller {
         private List<BrowserAnalyzer.BrowserAnalyzer> analyzers =
             new List<BrowserAnalyzer.BrowserAnalyzer>();
 
-        public Controller() {
+        public Controller(string location=null) {
             // Add the wanted browsers analyzers
             // TODO: Ask for the directory. If none, choose the default one.
-            //analyzers.Add(new ChromeAnalyzer.ChromeAnalyzer());
-            analyzers.Add(new FirefoxAnalyser.FirefoxAnalyzer());
+            if (location == null) {
+                try {
+                    analyzers.Add(new ChromeAnalyzer.ChromeAnalyzer());
+                } catch (Exception e) { Console.WriteLine("Chrome File not found"); }
+                try {
+                    analyzers.Add(new FirefoxAnalyser.FirefoxAnalyzer());
+                } catch (Exception e) { Console.WriteLine("FIREFOX File not found"); }
+            }
+            else {
+                try {
+                    analyzers.Add(new ChromeAnalyzer.ChromeAnalyzer(location));
+                } catch (Exception e) { Console.WriteLine("Chrome File not found"); }
+                try {
+                    analyzers.Add(new FirefoxAnalyser.FirefoxAnalyzer(location));
+                }catch(Exception e) { Console.WriteLine("FIREFOX File not found"); }
+            }
         }
 
         public string getDownloads() {
@@ -103,44 +117,47 @@ namespace Controller {
         public string detectIncoherencies() {
             string result = "";
             List<string> l = new List<string>();
-            List<string[]> history = new List<string[]>();
-            List<string[]> cookies = new List<string[]>();
+
 
             foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers) {
+                List<string[]> history = new List<string[]>();
+                List<string[]> cookies = new List<string[]>();
                 foreach (HistoryDTO dto in ba.getHistory())
                     history.Add(new string[] { dto.getTime(), dto.getDomain() });
                 foreach (CookiesDTO dto in ba.getCookies())
                     cookies.Add(new string[] { dto.getTime(), dto.getDomain() });
-            }
-            history = history.ToList().OrderBy(o => o[0]).ToList();
-            cookies = cookies.ToList().OrderBy(o => o[0]).ToList();
+            
+                history = history.ToList().OrderBy(o => o[0]).ToList();
+                cookies = cookies.ToList().OrderBy(o => o[0]).ToList();
 
-            List<string[]> history2 = new List<string[]>();
-            string[] prev = { "x", "x" };
-            foreach (string[] x in history)
-                if (x[0] != prev[0] || x[0] != prev[0]) {
-                    history2.Add(x);
-                    prev = x;
-                }
+                List<string[]> history2 = new List<string[]>();
+                string[] prev = { "x", "x" };
+                foreach (string[] x in history)
+                    if (x[0] != prev[0] || x[0] != prev[0]) {
+                        history2.Add(x);
+                        prev = x;
+                    }
 
-            List<string[]> cookies2 = new List<string[]>();
-            prev =new string[] { "x", "x" };
-            foreach (string[] x in cookies)
-                if (x[0] != prev[0] || x[0] != prev[0]) {
-                    cookies2.Add(x);
-                    prev = x;
-                }
+                List<string[]> cookies2 = new List<string[]>();
+                prev =new string[] { "x", "x" };
+                foreach (string[] x in cookies)
+                    if (x[0] != prev[0] || x[0] != prev[0]) {
+                        cookies2.Add(x);
+                        prev = x;
+                    }
   
-            Boolean found = false;
-            foreach (string[] cookie in cookies2) {
-                found = false;
-                foreach (string[] visit in history2)
-                    if (visit[1].EndsWith(cookie[1]))
-                        found = true;
-                if (!found)
-                    l.Add(cookie[1]);
+                Boolean found = false;
+                foreach (string[] cookie in cookies2) {
+                    found = false;
+                    foreach (string[] visit in history2)
+                        if (visit[1].EndsWith(cookie[1]))
+                            found = true;
+                    if (!found)
+                        l.Add(cookie[1]);
+
+                }
+                l = l.Distinct().ToList();
             }
-            l = l.Distinct().ToList();
 
             result += "-->Have been found cookies for the next domains that dont are in the history:\r\n";
             foreach (string s in l)
@@ -177,11 +194,12 @@ namespace Controller {
                 }
 
             string result = "-->All the Domains found in browser \r\n";
+
             foreach (string s in lout)
                 result += s + "\r\n";
-            return result;
 
             return result;
+
 
 
         }

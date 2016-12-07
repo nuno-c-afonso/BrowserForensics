@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.Data;
 using DTO;
+using System.Data.SQLite;
 
 namespace ChromeAnalyzer {
     public class ChromeDownloadHistoryAnalyzer : BrowserAnalyzer.DownloadHistoryAnalyzer {
         private SQLite.Client client;
         private DataTable queryResult = null;
+        private string location;
         private const string QUERY =
             "SELECT datetime(((downloads.start_time/1000000)-11644473600), \"unixepoch\") AS start, " +
                 "datetime(((downloads.end_time/1000000)-11644473600), \"unixepoch\") AS end, " +
@@ -18,9 +20,11 @@ namespace ChromeAnalyzer {
             "FROM downloads " +
             "WHERE received_bytes = total_bytes AND total_bytes > 0 " +
             "ORDER BY start ASC";
+        public List<DownloadsDTO> result= null;
 
         public ChromeDownloadHistoryAnalyzer(string location) {
             client = new SQLite.Client(location);
+            this.location = location;
         }
 
         //private List<string> convertToList() {
@@ -37,10 +41,19 @@ namespace ChromeAnalyzer {
         }
 
         public List<DownloadsDTO> getDownloads() {
-            if (queryResult == null)
-                queryResult = client.select(QUERY);
-
-            return convertToList();
+            if (result == null) {
+                List<DownloadsDTO> res = new List<DownloadsDTO>();
+                try {
+                    if (queryResult == null)
+                        queryResult = client.select(QUERY);
+                    res = convertToList();
+                } catch (System.Data.SQLite.SQLiteException e) {
+                    Console.WriteLine(location + " not Found");
+                    client.dbConnection.Close();
+                }
+                result = res;
+            }
+            return result;
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 //using System.Data.SQLite;
 using System.Data;
 using DTO;
+using System.Data.SQLite;
 
 namespace FirefoxAnalyzer {
     public class FirefoxDownloadHistoryAnalyzer : BrowserAnalyzer.DownloadHistoryAnalyzer {
@@ -21,15 +22,15 @@ namespace FirefoxAnalyzer {
             List<DownloadsDTO> output = new List<DownloadsDTO>();
             DataTable completedDownloads;
              string s = "SELECT datetime(moz_annos.dateAdded / 1000000, 'unixepoch', 'localtime') as dateAdded, moz_annos.content  FROM moz_annos";
-            
-             completedDownloads = client.select(s);
+            try {
+                completedDownloads = client.select(s);
 
-             foreach(DataRow r in completedDownloads.Rows) {
-                 if( r["content"].ToString().Contains("Downloads") || r["content"].ToString().Contains("C:"))
-                    output.Add(new DownloadsDTO("" + r["dateAdded"], "Firefox", "", "",""+ r["content"]));
-             }
-
-             return output;
+                foreach (DataRow r in completedDownloads.Rows) {
+                    if (r["content"].ToString().Contains("Downloads") || r["content"].ToString().Contains("C:"))
+                        output.Add(new DownloadsDTO("" + r["dateAdded"], "Firefox", "", "", "" + r["content"]));
+                }
+            } catch (System.Data.SQLite.SQLiteException e) { Console.WriteLine(location + " not Found"); }
+            return output;
         }
     }
 }

@@ -14,16 +14,18 @@ namespace BrowserAnalyzer
         private SearchHistoryAnalyzer searches;
         private BrowserHistoryAnalyzer history;
         private AutofillAnalyzer autofill;
+        private string location;
 
         public BrowserAnalyzer(PasswordsAnalyzer pass, CookiesAnalyzer cookies,
             DownloadHistoryAnalyzer downloads, SearchHistoryAnalyzer searches, 
-            BrowserHistoryAnalyzer history, AutofillAnalyzer autofill) {
+            BrowserHistoryAnalyzer history, AutofillAnalyzer autofill,string location) {
             this.pass = pass;
             this.cookies = cookies;
             this.downloads = downloads;
             this.searches = searches;
             this.history = history;
             this.autofill = autofill;
+            this.location = location;
         }
 
         public List<PasswordDTO> getPasswords() {

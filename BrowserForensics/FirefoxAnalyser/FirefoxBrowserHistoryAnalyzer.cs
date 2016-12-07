@@ -6,7 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DTO;
- 
+using System.Data.SQLite;
+
+
+
 
 namespace FirefoxAnalyzer {
     public class FirefoxBrowserHistoryAnalyzer : BrowserAnalyzer.BrowserHistoryAnalyzer {
@@ -23,13 +26,14 @@ namespace FirefoxAnalyzer {
             List<HistoryDTO> output = new List<HistoryDTO>();
             string s = "select datetime(last_visit_date/1000000,'unixepoch','localtime') as time, title, url, visit_count from moz_places ";
             s = "SELECT datetime(moz_historyvisits.visit_date/1000000, 'unixepoch', 'localtime')as time, moz_places.url FROM moz_places, moz_historyvisits WHERE moz_places.id = moz_historyvisits.place_id";
-            browsed = client.select(s);
+            try {
+                browsed = client.select(s);
 
-            foreach (DataRow r in browsed.Rows) 
-                output.Add(new HistoryDTO(""+r["time"], "Firefox",""+r["url"]));
-                     
+                foreach (DataRow r in browsed.Rows)
+                    output.Add(new HistoryDTO("" + r["time"], "Firefox", "" + r["url"]));
+            } catch (System.Data.SQLite.SQLiteException e) { Console.WriteLine(location + " not Found"); }
             return output;
-        }
+            }
    
        
     }
