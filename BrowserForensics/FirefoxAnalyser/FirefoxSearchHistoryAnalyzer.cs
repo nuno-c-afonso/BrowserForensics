@@ -16,11 +16,10 @@ namespace FirefoxAnalyzer {
             this.location = location;
         }
 
-        public List<string> getSearches() {
-            //public List<SearchDTO> getSearches() {
+        public List<SearchDTO> getSearches() {
             DataTable browsed;
             List<string> output = new List<string>();
-            //List<SearchDTO> output = new List<DTObject>();
+            List<SearchDTO> outputDTOs = new List<SearchDTO>();
             string s =  "SELECT datetime(moz_historyvisits.visit_date/1000000, 'unixepoch', 'localtime')as time, moz_places.url FROM moz_places, moz_historyvisits WHERE moz_places.id = moz_historyvisits.place_id";
             browsed = client.select(s);
 
@@ -28,13 +27,14 @@ namespace FirefoxAnalyzer {
                 string[] search = getSearchInURL((string)r["url"]);
                 if (search != null) {
                     string line = r["time"] + " SEARCH in " + search[0]+ search[1];
-                    if(!output.Contains(line))
+                    if (!output.Contains(line)) {
                         output.Add(line);
-                        //output.Add(new SearchDTO(""+r["time"], "Firefox", search[1], search[0]));
+                        outputDTOs.Add(new SearchDTO("" + r["time"], "Firefox", search[1], search[0]));
+                    }
                 }
             }
 
-            return output;
+            return outputDTOs;
         }
 
         public string[] getSearchInURL(string url) {

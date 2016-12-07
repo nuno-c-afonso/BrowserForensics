@@ -50,6 +50,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchHistoryAnalyzer.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary1\DTOs.csproj">
+      <Project>{2c872a50-5df8-4ee6-8c24-914c407dcfb0}</Project>
+      <Name>DTOs</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

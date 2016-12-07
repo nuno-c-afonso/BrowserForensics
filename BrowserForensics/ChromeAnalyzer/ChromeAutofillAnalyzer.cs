@@ -18,16 +18,16 @@ namespace ChromeAnalyzer {
             client = new SQLite.Client(location);
         }
 
-        public List<string> getAutofills() {
-        //public List<AutofillDTO> getAutofills() {
+        //public List<string> getAutofills() {
+        public List<AutofillDTO> getAutofills() {
             if (queryResult == null)
                 queryResult = client.select(QUERY);
 
-            List<string> res = new List<string>();
-            //List<AutofillDTO> res = new List<AutofillDTO>();
+            //List<string> res = new List<string>();
+            List<AutofillDTO> res = new List<AutofillDTO>();
             foreach (DataRow r in queryResult.Rows)
-                res.Add("AUTOFILL " + r["value"]);
-                //res.Add(new AutofillDTO("", "Chrome",""+ r["value"]));
+                //res.Add("AUTOFILL " + r["value"]);
+                res.Add(new AutofillDTO("", "Chrome",""+ r["value"]));
 
             return res;
         }

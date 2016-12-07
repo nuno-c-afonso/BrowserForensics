@@ -17,10 +17,8 @@ namespace FirefoxAnalyzer {
             this.location = location;
         }
 
-        public List<string>  getDownloads() {
-        //public List<DownloadDTO>  getDownloads() {
-            List<string> output = new List<string>();
-            //List<DownloadDTO> output = new List<DownloadDTO>();
+        public List<DownloadsDTO>  getDownloads() {
+            List<DownloadsDTO> output = new List<DownloadsDTO>();
             DataTable completedDownloads;
              string s = "SELECT datetime(moz_annos.dateAdded / 1000000, 'unixepoch', 'localtime') as dateAdded, moz_annos.content  FROM moz_annos";
             
@@ -28,12 +26,10 @@ namespace FirefoxAnalyzer {
 
              foreach(DataRow r in completedDownloads.Rows) {
                  if( r["content"].ToString().Contains("Downloads") || r["content"].ToString().Contains("C:"))
-                    output.Add(r["dateAdded"] +" "+ r["content"] );
-                    //output.Add(new DownloadsDTO("" + r["dateAdded"], "Firefox", "", "",""+ r["content"]));
+                    output.Add(new DownloadsDTO("" + r["dateAdded"], "Firefox", "", "",""+ r["content"]));
              }
 
              return output;
-            //return location;
         }
     }
 }

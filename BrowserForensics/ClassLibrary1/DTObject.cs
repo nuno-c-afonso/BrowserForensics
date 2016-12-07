@@ -13,6 +13,9 @@ namespace DTO {
             this.time = time;
             this.browser = browser;
         }
+        public string getFullString() {
+            return getTime() + " " + getType() + " " + getInfo() + "\r\n";
+        }
 
         public string getTime() { return time; }
         public abstract string getType();

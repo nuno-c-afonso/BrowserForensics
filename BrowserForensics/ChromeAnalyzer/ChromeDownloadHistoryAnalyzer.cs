@@ -23,20 +23,20 @@ namespace ChromeAnalyzer {
             client = new SQLite.Client(location);
         }
 
-        private List<string> convertToList() {
-        //public List<DownloadDTO>  getDownloads() {
-            List<string> res = new List<string>();
-            //List<DownloadDTO> output = new List<DownloadDTO>();
+        //private List<string> convertToList() {
+        public List<DownloadsDTO> convertToList() {
+            //List<string> res = new List<string>();
+            List<DownloadsDTO> res = new List<DownloadsDTO>();
             foreach (DataRow r in queryResult.Rows) {
-                res.Add(r["start"] + " DOWNLOAD STARTED\r\n\tFROM URL: " + r["url"] + "\r\n\tTO PATH: " + r["path"]);
-                res.Add(r["end"] + " DOWNLOAD ENDED\r\n\tFROM URL: " + r["url"] + "\r\n\tTO PATH: " + r["path"]);
-                //res.Add(new DownloadsDTO(""+r["start"], "Chrome",""+ r["url"],""+ r["path"],""));
+                //res.Add(r["start"] + " DOWNLOAD STARTED\r\n\tFROM URL: " + r["url"] + "\r\n\tTO PATH: " + r["path"]);
+                //res.Add(r["end"] + " DOWNLOAD ENDED\r\n\tFROM URL: " + r["url"] + "\r\n\tTO PATH: " + r["path"]);
+                res.Add(new DownloadsDTO(""+r["start"], "Chrome",""+ r["url"],""+ r["path"],""));
             }
 
             return res;
         }
 
-        public List<string> getDownloads() {
+        public List<DownloadsDTO> getDownloads() {
             if (queryResult == null)
                 queryResult = client.select(QUERY);
 

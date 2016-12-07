@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DTO;
 
 namespace ChromeAnalyzer {
     public class ChromeSearchHistoryAnalyzer : BrowserAnalyzer.SearchHistoryAnalyzer {
@@ -17,16 +18,16 @@ namespace ChromeAnalyzer {
             client = new SQLite.Client(location);
         }
 
-        public List<string> getSearches() {
-            //public List<SearchDTO> getSearches() {
+        //public List<string> getSearches() {
+          public List<SearchDTO> getSearches() {
             if (queryResult == null)
                 queryResult = client.select(QUERY);
 
-            List<string> res = new List<string>();
-            //List<SearchDTO> res = new List<DTObject>();
+            //List<string> res = new List<string>();
+            List<SearchDTO> res = new List<SearchDTO>();
             foreach (DataRow r in queryResult.Rows)
-                res.Add("SEARCHED " + r["term"]);
-                //res.Add(new SearchDTO(time, "Chrome", sr["term"]));
+                //res.Add("SEARCHED " + r["term"]);
+                res.Add(new SearchDTO("", "Chrome", ""+ r["term"]));
 
             return res;
         }

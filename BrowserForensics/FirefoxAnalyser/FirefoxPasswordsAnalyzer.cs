@@ -17,10 +17,8 @@ namespace FirefoxAnalyzer {
             this.location = location;
         }
 
-        public List<string> getPasswords() {
-        //public List<PasswordDTO> getPasswords()
-            List<string> output = new List<string>();
-            //List<PasswordDTO> output = new List<PasswordDTO>();
+        public List<PasswordDTO> getPasswords() { 
+            List<PasswordDTO> output = new List<PasswordDTO>();
 
             /*  DataTable storedSignOns;
              *  
@@ -48,7 +46,7 @@ namespace FirefoxAnalyzer {
 
                   s += r["formSubMitURL"] + " -> " + user + " : " + pass + "\r\n";
               }*/
-            output.Add(location);
+            //output.Add(location);
             return output;
         }
     }

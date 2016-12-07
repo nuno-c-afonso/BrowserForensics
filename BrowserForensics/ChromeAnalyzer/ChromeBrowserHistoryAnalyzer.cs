@@ -20,18 +20,18 @@ namespace ChromeAnalyzer {
             client = new SQLite.Client(location);
         }
 
-        public List<string> getHistory() {
-        //public List<HistoryDTO> getHistory() {
+        //public List<string> getHistory() {
+        public List<HistoryDTO> getHistory() {
             if (queryResult == null)
                 queryResult = client.select(QUERY);
 
-            List<string> res = new List<string>();
-            //List<HistoryDTO> output = new List<HistoryDTO>();
+            //List<string> res = new List<string>();
+            List<HistoryDTO> output = new List<HistoryDTO>();
             foreach (DataRow r in queryResult.Rows)
-                res.Add(r["date"] + " ACCESSED URL " + r["url"]);
-                //res.Add(new HistoryDTO("" + r["date"], "Firefox", "" + r["url"]));
+                //res.Add(r["date"] + " ACCESSED URL " + r["url"]);
+                output.Add(new HistoryDTO("" + r["date"], "Firefox", "" + r["url"]));
 
-            return res;
+            return output;
         }
     }
 }

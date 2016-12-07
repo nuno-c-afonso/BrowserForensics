@@ -21,7 +21,7 @@ namespace DTO {
 
 
         public override string getType() {
-            return "Auto Fill";
+            return "Search";
         }
         public override string getInfo() {
             return "SEARCHED " + term +" in. "+location;

@@ -53,6 +53,10 @@
       <Project>{e3da1157-cb3c-4587-b928-ff722777b731}</Project>
       <Name>ChromeAnalyzer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ClassLibrary1\DTOs.csproj">
+      <Project>{2c872a50-5df8-4ee6-8c24-914c407dcfb0}</Project>
+      <Name>DTOs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FirefoxAnalyser\FirefoxAnalyser.csproj">
       <Project>{0fe66ccb-d8cd-4032-af7e-c8e614abe1cc}</Project>
       <Name>FirefoxAnalyser</Name>

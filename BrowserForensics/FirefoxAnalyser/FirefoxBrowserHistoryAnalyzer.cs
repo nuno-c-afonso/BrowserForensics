@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DTO;
+ 
 
 namespace FirefoxAnalyzer {
     public class FirefoxBrowserHistoryAnalyzer : BrowserAnalyzer.BrowserHistoryAnalyzer {
@@ -17,18 +18,15 @@ namespace FirefoxAnalyzer {
             this.location = location;
         }
 
-        public List<string> getHistory() {
-            //public List<HistoryDTO> getHistory() {
+        public List<HistoryDTO> getHistory() {
             DataTable browsed;
-            List<string> output = new List<string>();
-            //List<HistoryDTO> output = new List<HistoryDTO>();
+            List<HistoryDTO> output = new List<HistoryDTO>();
             string s = "select datetime(last_visit_date/1000000,'unixepoch','localtime') as time, title, url, visit_count from moz_places ";
             s = "SELECT datetime(moz_historyvisits.visit_date/1000000, 'unixepoch', 'localtime')as time, moz_places.url FROM moz_places, moz_historyvisits WHERE moz_places.id = moz_historyvisits.place_id";
             browsed = client.select(s);
 
             foreach (DataRow r in browsed.Rows) 
-                output.Add( r["time"] + " "+ r["url"] );
-                //output.Add(new HistoryDTO(""+r["time"], "Firefox",""+r["url"]));
+                output.Add(new HistoryDTO(""+r["time"], "Firefox",""+r["url"]));
                      
             return output;
         }
