@@ -47,5 +47,9 @@ namespace GUI {
         private void timelineButton_Click(object sender, EventArgs e) {
             Output.Text = c.getTimeline();
         }
+
+        private void incoherenciesButton_Click(object sender, EventArgs e) {
+            Output.Text = c.detectIncoherencies();
+        }
     }
 }

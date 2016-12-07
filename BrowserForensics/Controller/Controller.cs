@@ -99,5 +99,28 @@ namespace Controller {
                 result += s ;
             return result;
         }
+    
+        public string detectIncoherencies() {
+            List<string> l = new List<string>();
+            List<CookiesDTO> cookies = new List<CookiesDTO>();
+            List<HistoryDTO> history = new List<HistoryDTO>();
+            string result = "";
+
+            foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers) {
+                cookies = ba.getCookies().Distinct().OrderBy(o => o.getTime()).ToList();
+                history = ba.getHistory().Distinct().OrderBy(o => o.getTime()).ToList();
+
+                foreach (HistoryDTO dto in history)
+                    l.Add(dto.getTime() + " " + dto.getDomain() + " History" + "\r\n");
+                foreach (CookiesDTO dto in cookies)
+                    l.Add(dto.getTime() + " " + dto.getDomain() + " Cookie" + "\r\n");
+            }
+
+
+            //l.Sort();
+            foreach (string s in l)
+                result += s;
+            return result;
+        }
     }
 }

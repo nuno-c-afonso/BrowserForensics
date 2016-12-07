@@ -19,6 +19,10 @@ namespace DTO {
             this.value = value;
         }
 
+        public string getDomain() {
+            return domain;
+        }
+
         public override string getType() {
             return "Cookie";
         }
