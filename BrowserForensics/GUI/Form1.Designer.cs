@@ -34,6 +34,10 @@
             this.timelineButton = new System.Windows.Forms.Button();
             this.IncoherenciesButton = new System.Windows.Forms.Button();
             this.domainsButton = new System.Windows.Forms.Button();
+            this.chooseLocationButton = new System.Windows.Forms.Button();
+            this.resetLocationButton = new System.Windows.Forms.Button();
+            this.locationLabel = new System.Windows.Forms.Label();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.SuspendLayout();
             // 
             // Output
@@ -41,13 +45,13 @@
             this.Output.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Output.Location = new System.Drawing.Point(10, 11);
+            this.Output.Location = new System.Drawing.Point(12, 10);
             this.Output.Margin = new System.Windows.Forms.Padding(2);
             this.Output.Multiline = true;
             this.Output.Name = "Output";
             this.Output.ReadOnly = true;
             this.Output.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.Output.Size = new System.Drawing.Size(798, 309);
+            this.Output.Size = new System.Drawing.Size(798, 397);
             this.Output.TabIndex = 0;
             // 
             // downloads_Button
@@ -170,11 +174,48 @@
             this.domainsButton.UseVisualStyleBackColor = true;
             this.domainsButton.Click += new System.EventHandler(this.domainButton_Click);
             // 
+            // chooseLocationButton
+            // 
+            this.chooseLocationButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.chooseLocationButton.Location = new System.Drawing.Point(816, 344);
+            this.chooseLocationButton.Name = "chooseLocationButton";
+            this.chooseLocationButton.Size = new System.Drawing.Size(99, 28);
+            this.chooseLocationButton.TabIndex = 11;
+            this.chooseLocationButton.Text = "Other Location...";
+            this.chooseLocationButton.UseVisualStyleBackColor = true;
+            this.chooseLocationButton.Click += new System.EventHandler(this.chooseLocationButton_Click);
+            // 
+            // resetLocationButton
+            // 
+            this.resetLocationButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.resetLocationButton.Location = new System.Drawing.Point(817, 378);
+            this.resetLocationButton.Name = "resetLocationButton";
+            this.resetLocationButton.Size = new System.Drawing.Size(98, 30);
+            this.resetLocationButton.TabIndex = 12;
+            this.resetLocationButton.Text = "Reset Location";
+            this.resetLocationButton.UseVisualStyleBackColor = true;
+            this.resetLocationButton.Click += new System.EventHandler(this.resetLocationButton_Click);
+            // 
+            // locationLabel
+            // 
+            this.locationLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.locationLabel.AutoSize = true;
+            this.locationLabel.Location = new System.Drawing.Point(844, 410);
+            this.locationLabel.Name = "locationLabel";
+            this.locationLabel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.locationLabel.Size = new System.Drawing.Size(44, 13);
+            this.locationLabel.TabIndex = 13;
+            this.locationLabel.Text = "location";
+            this.locationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(923, 329);
+            this.ClientSize = new System.Drawing.Size(923, 427);
+            this.Controls.Add(this.locationLabel);
+            this.Controls.Add(this.resetLocationButton);
+            this.Controls.Add(this.chooseLocationButton);
             this.Controls.Add(this.domainsButton);
             this.Controls.Add(this.IncoherenciesButton);
             this.Controls.Add(this.timelineButton);
@@ -207,6 +248,10 @@
         private System.Windows.Forms.Button timelineButton;
         private System.Windows.Forms.Button IncoherenciesButton;
         private System.Windows.Forms.Button domainsButton;
+        private System.Windows.Forms.Button chooseLocationButton;
+        private System.Windows.Forms.Button resetLocationButton;
+        private System.Windows.Forms.Label locationLabel;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }
 

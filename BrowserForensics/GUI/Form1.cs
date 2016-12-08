@@ -10,10 +10,14 @@ using System.Windows.Forms;
 
 namespace GUI {
     public partial class Form1 : Form {
+        private Controller.Controller first;
         private Controller.Controller c;
         public Form1() {
             InitializeComponent();
-            c = new Controller.Controller();
+            first = new Controller.Controller();
+            c = first;
+
+            locationLabel.Text = "";
         }
 
         private void button1_Click(object sender, EventArgs e) {
@@ -53,6 +57,25 @@ namespace GUI {
         }
         private void domainButton_Click(object sender, EventArgs e) {
             Output.Text = c.getAllDomains();
+        }
+
+        private void chooseLocationButton_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                locationLabel.Text = "Custom Location: " + folderBrowserDialog1.SelectedPath;
+                c = new Controller.Controller(folderBrowserDialog1.SelectedPath);
+                if (locationLabel.Right > this.Width)
+                    locationLabel.Left = this.Width - locationLabel.Width - 20;
+            }
+             
+
+        }
+
+        private void resetLocationButton_Click(object sender, EventArgs e)
+        {
+            locationLabel.Text = "";
+            c = first;
         }
     }
 }
