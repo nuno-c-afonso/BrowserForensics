@@ -20,7 +20,7 @@ namespace BrowserAnalyzer {
                 //Console.WriteLine("query:" + query);
                 first = query.IndexOf("&");
                 if (first != -1) {
-                    output = new string[] { "Google:", query.Substring(0, first).Replace('+', ' ') };
+                    output = new string[] { "Google", query.Substring(0, first).Replace('+', ' ') };
                 }
             }
             query = "";
@@ -31,7 +31,7 @@ namespace BrowserAnalyzer {
                 //Console.WriteLine("query:" + query);
                 first = query.IndexOf("&");
                 if (first == -1) {
-                    output = new string[] { "Youtube:", query.Replace('+', ' ') };
+                    output = new string[] { "Youtube", query.Replace('+', ' ') };
                 }
             }
             query = "";
@@ -42,7 +42,7 @@ namespace BrowserAnalyzer {
                 //Console.WriteLine("query:" + query);
                 first = query.IndexOf("&");
                 if (first == -1) {
-                    output = new string[] { "Facebook:", query.Replace('+', ' ') };
+                    output = new string[] { "Facebook", query.Replace('+', ' ') };
                 }
             }
             query = "";
@@ -53,7 +53,7 @@ namespace BrowserAnalyzer {
                 //Console.WriteLine("query:" + query);
                 first = query.IndexOf("&");
                 if (first == -1) {
-                    output = new string[] { "Amazon:", query.Replace('+', ' ') };
+                    output = new string[] { "Amazon", query.Replace('+', ' ') };
                 }
             }
             query = "";
@@ -63,7 +63,7 @@ namespace BrowserAnalyzer {
                 query = url.Substring(first);
                 first = query.IndexOf("&");
                 if (first != -1) {
-                    output = new string[] { "Ebay:", query.Substring(0, first).Replace('+', ' ') };
+                    output = new string[] { "Ebay", query.Substring(0, first).Replace('+', ' ') };
                 }
             }
 

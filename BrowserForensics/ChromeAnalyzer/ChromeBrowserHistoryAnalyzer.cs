@@ -32,7 +32,7 @@ namespace ChromeAnalyzer {
                     queryResult = client.select(QUERY);
 
                     foreach (DataRow r in queryResult.Rows)
-                        output.Add(new HistoryDTO("" + r["date"], "Firefox", "" + r["url"]));
+                        output.Add(new HistoryDTO("" + r["date"], "Chrome", "" + r["url"]));
 
                 } catch (System.Data.SQLite.SQLiteException e) {
                     Console.WriteLine(location + " not Found");

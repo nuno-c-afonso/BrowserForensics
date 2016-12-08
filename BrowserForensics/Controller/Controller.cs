@@ -159,7 +159,7 @@ namespace Controller {
                 l = l.Distinct().ToList();
             }
 
-            result += "-->Have been found cookies for the next domains that dont are in the history:\r\n";
+            result += "-->Have been found cookies for the next domains that are not in the history:\r\n";
             foreach (string s in l)
                 result += s+ "\r\n";
             return result;

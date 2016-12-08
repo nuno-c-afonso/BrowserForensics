@@ -24,7 +24,10 @@ namespace DTO {
             return " SEARCH   ";
         }
         public override string getInfo() {
-            return "Searched " + term +" in. "+location;
+            string str = "Searched " + term;
+            if (location != null && !location.Equals("") )
+                str += " in: " + location;
+            return str;
         }
     }
 }
