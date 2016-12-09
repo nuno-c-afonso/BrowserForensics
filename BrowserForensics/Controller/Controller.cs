@@ -15,17 +15,17 @@ namespace Controller {
             // Add the wanted browsers analyzers
             // TODO: Ask for the directory. If none, choose the default one.
             if (location == null) {
-                //try {
-                //    analyzers.Add(new ChromeAnalyzer.ChromeAnalyzer());
-                //} catch (Exception e) { Console.WriteLine("Chrome File not found"); }
+                try {
+                    analyzers.Add(new ChromeAnalyzer.ChromeAnalyzer());
+                } catch (Exception e) { Console.WriteLine("Chrome File not found"); }
                 try {
                     analyzers.Add(new FirefoxAnalyser.FirefoxAnalyzer());
                 } catch (Exception e) { Console.WriteLine("FIREFOX File not found"); }
             }
             else {
-                //try {
-                //    analyzers.Add(new ChromeAnalyzer.ChromeAnalyzer(location));
-                //} catch (Exception e) { Console.WriteLine("Chrome File not found"); }
+                try {
+                    analyzers.Add(new ChromeAnalyzer.ChromeAnalyzer(location));
+                } catch (Exception e) { Console.WriteLine("Chrome File not found"); }
                 try {
                     analyzers.Add(new FirefoxAnalyser.FirefoxAnalyzer(location));
                 }catch(Exception e) { Console.WriteLine("FIREFOX File not found"); }
