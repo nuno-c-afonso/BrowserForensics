@@ -148,7 +148,24 @@ namespace GUI {
             var source = new BindingSource(downloads, null);
 
             dataGridView1.DataSource = source;
-            helpfulMethodDataGrid();
+
+            if(Lstemp.Count < 10000)
+                helpfulMethodDataGrid();
+            else
+            {
+                foreach (DataGridViewColumn column in dataGridView1.Columns) column.SortMode = DataGridViewColumnSortMode.Automatic;
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+
+                foreach (DataGridViewColumn column in dataGridView1.Columns)
+                {
+                    if (column.Width > 540)
+                    {
+                        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                        column.Width = 540;
+                    }
+                }
+                dataGridView1.AllowUserToResizeColumns = true;
+            }
         }
 
         private void autofills_Button_Click(object sender, EventArgs e) {

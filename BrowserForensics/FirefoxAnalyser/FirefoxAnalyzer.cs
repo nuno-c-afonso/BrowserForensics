@@ -29,15 +29,15 @@ namespace FirefoxAnalyser
         }
 
         public FirefoxAnalyzer(string location) :
-            base(new FirefoxPasswordsAnalyzer(Directory.GetDirectories(location+ firefoxRelativePath, "storage", System.IO.SearchOption.AllDirectories).ElementAt(0) + "\\.." + @"\signons.sqlite"),
-                new FirefoxCookiesAnalyzer(Directory.GetDirectories(location + firefoxRelativePath, "storage", System.IO.SearchOption.AllDirectories).ElementAt(0) + "\\.." + @"\cookies.sqlite"),
-                new FirefoxDownloadHistoryAnalyzer(Directory.GetDirectories(location + firefoxRelativePath, "storage", System.IO.SearchOption.AllDirectories).ElementAt(0) + "\\.." + @"\places.sqlite"),
-                new FirefoxSearchHistoryAnalyzer(Directory.GetDirectories(location + firefoxRelativePath, "storage", System.IO.SearchOption.AllDirectories).ElementAt(0) + "\\.." + @"\places.sqlite"),
-                new FirefoxBrowserHistoryAnalyzer(Directory.GetDirectories(location + firefoxRelativePath, "storage", System.IO.SearchOption.AllDirectories).ElementAt(0) + "\\.." + @"\places.sqlite"),
-                new FirefoxAutofillAnalyzer(Directory.GetDirectories(location + firefoxRelativePath, "storage", System.IO.SearchOption.AllDirectories).ElementAt(0) + "\\.." + @"\formhistory.sqlite"),
+            base(new FirefoxPasswordsAnalyzer(location + @"\Firefox" + @"\signons.sqlite"),
+                new FirefoxCookiesAnalyzer(location + @"\Firefox" + @"\cookies.sqlite"),
+                new FirefoxDownloadHistoryAnalyzer(location + @"\Firefox" + @"\places.sqlite"),
+                new FirefoxSearchHistoryAnalyzer(location + @"\Firefox" + @"\places.sqlite"),
+                new FirefoxBrowserHistoryAnalyzer(location + @"\Firefox" + @"\places.sqlite"),
+                new FirefoxAutofillAnalyzer(location + @"\Firefox" + @"\formhistory.sqlite"),
                 location) {
             Console.WriteLine(location);
-            Console.WriteLine("ON FIREFOX " + location + firefoxRelativePath);
+            Console.WriteLine("ON FIREFOX " + location + @"\Firefox");
         }
 
     }

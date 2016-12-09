@@ -13,13 +13,13 @@ namespace ChromeAnalyzer
         private static string chromeRelativePath = @"\Local\Google\Chrome\User Data\Default";
 
         public ChromeAnalyzer(string location) :
-            base(new ChromePasswordsAnalyzer(location + chromeRelativePath + @"\Login Data"),
-            new ChromeCookiesAnalyzer(location + chromeRelativePath + @"\Cookies"),
-            new ChromeDownloadHistoryAnalyzer(location + chromeRelativePath + @"\History"),
-            new ChromeSearchHistoryAnalyzer(location + chromeRelativePath + @"\History"),
-            new ChromeBrowserHistoryAnalyzer(location + chromeRelativePath + @"\History"),
-            new ChromeAutofillAnalyzer(location  + chromeRelativePath + @"\Web Data"),
-            location) { Console.WriteLine("ON CHROME " + location + chromeRelativePath); }
+            base(new ChromePasswordsAnalyzer(location + @"\Chrome" + @"\Login Data"),
+            new ChromeCookiesAnalyzer(location + @"\Chrome" + @"\Cookies"),
+            new ChromeDownloadHistoryAnalyzer(location + @"\Chrome" + @"\History"),
+            new ChromeSearchHistoryAnalyzer(location + @"\Chrome" + @"\History"),
+            new ChromeBrowserHistoryAnalyzer(location + @"\Chrome" + @"\History"),
+            new ChromeAutofillAnalyzer(location  + @"\Chrome" + @"\Web Data"),
+            location) { Console.WriteLine("ON CHROME " + location + @"\Chrome"); }
 
         public ChromeAnalyzer() :
             base(new ChromePasswordsAnalyzer(defaultPath + chromeRelativePath + @"\Login Data"),
