@@ -40,15 +40,6 @@ namespace Controller {
             return sb.ToString();
         }
 
-        public List<DownloadsDTO> getDownloadsDTOList()
-        {
-            List<DownloadsDTO> ldto = new List<DownloadsDTO>();
-            foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers)
-                foreach (DownloadsDTO dto in ba.getDownloads())
-                    ldto.Add(dto);
-            return ldto;
-        }
-
         public string getPasswords() {
             StringBuilder sb = new StringBuilder("--------PASSWORDS--------\r\n");
             foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers)
@@ -89,6 +80,63 @@ namespace Controller {
                     sb.Append(dto.getFullString()); 
             return sb.ToString();
         }
+
+
+        public List<DownloadsDTO> getDownloadsDTOList()
+        {
+            List<DownloadsDTO> ldto = new List<DownloadsDTO>();
+            foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers)
+                foreach (DownloadsDTO dto in ba.getDownloads())
+                    ldto.Add(dto);
+            return ldto;
+        }
+
+        public List<PasswordDTO> getPasswordsDTOList()
+        {
+            List<PasswordDTO> ldto = new List<PasswordDTO>();
+            foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers)
+                foreach (PasswordDTO dto in ba.getPasswords())
+                    ldto.Add(dto);
+            return ldto;
+        }
+
+        public List<CookiesDTO> getCookiesDTOList()
+        {
+            List<CookiesDTO> ldto = new List<CookiesDTO>();
+            foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers)
+                foreach (CookiesDTO dto in ba.getCookies())
+                    ldto.Add(dto);
+            return ldto;
+        }
+
+        public List<SearchDTO> getSearchesDTOList()
+        {
+            List<SearchDTO> ldto = new List<SearchDTO>();
+            foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers)
+                foreach (SearchDTO dto in ba.getSearches())
+                    ldto.Add(dto);
+            return ldto;
+        }
+
+        public List<HistoryDTO> getHistoryDTOList()
+        {
+            List<HistoryDTO> ldto = new List<HistoryDTO>();
+            foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers)
+                foreach (HistoryDTO dto in ba.getHistory())
+                    ldto.Add(dto);
+
+            return ldto;
+        }
+
+        public List<AutofillDTO> getAutofillsDTOList()
+        {
+            List<AutofillDTO> ldto = new List<AutofillDTO>();
+            foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers)
+                foreach (AutofillDTO dto in ba.getAutofills())
+                    ldto.Add(dto);
+            return ldto;
+        }
+
 
         public string getAllInfo() {
             StringBuilder sb = new StringBuilder();

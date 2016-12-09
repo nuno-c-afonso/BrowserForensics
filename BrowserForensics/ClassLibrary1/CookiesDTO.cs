@@ -11,6 +11,11 @@ namespace DTO {
         string expiration;
         string value;
 
+        public String Domain { get { return domain; } }
+        public String Value { get { return value; } }
+        public String LastAccess { get { return lastAccess; } }
+        public String Expiration { get { return expiration; } }
+
 
         public CookiesDTO(string time, string browser, string domain, string lastAccess, string expiration, string value) : base(time, browser) {
             this.domain = domain;

@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.Output = new System.Windows.Forms.TextBox();
             this.downloads_Button = new System.Windows.Forms.Button();
             this.passwords_Button = new System.Windows.Forms.Button();
@@ -38,12 +39,15 @@
             this.resetLocationButton = new System.Windows.Forms.Button();
             this.locationLabel = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.searchDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchDTOBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // Output
             // 
-            this.Output.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.Output.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Output.Location = new System.Drawing.Point(12, 10);
             this.Output.Margin = new System.Windows.Forms.Padding(2);
@@ -51,13 +55,13 @@
             this.Output.Name = "Output";
             this.Output.ReadOnly = true;
             this.Output.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.Output.Size = new System.Drawing.Size(798, 397);
+            this.Output.Size = new System.Drawing.Size(878, 315);
             this.Output.TabIndex = 0;
             // 
             // downloads_Button
             // 
             this.downloads_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.downloads_Button.Location = new System.Drawing.Point(811, 10);
+            this.downloads_Button.Location = new System.Drawing.Point(891, 10);
             this.downloads_Button.Margin = new System.Windows.Forms.Padding(2);
             this.downloads_Button.Name = "downloads_Button";
             this.downloads_Button.Size = new System.Drawing.Size(103, 19);
@@ -69,7 +73,7 @@
             // passwords_Button
             // 
             this.passwords_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.passwords_Button.Location = new System.Drawing.Point(811, 33);
+            this.passwords_Button.Location = new System.Drawing.Point(891, 33);
             this.passwords_Button.Margin = new System.Windows.Forms.Padding(2);
             this.passwords_Button.Name = "passwords_Button";
             this.passwords_Button.Size = new System.Drawing.Size(103, 21);
@@ -81,7 +85,7 @@
             // cookies_Button
             // 
             this.cookies_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cookies_Button.Location = new System.Drawing.Point(811, 59);
+            this.cookies_Button.Location = new System.Drawing.Point(891, 59);
             this.cookies_Button.Margin = new System.Windows.Forms.Padding(2);
             this.cookies_Button.Name = "cookies_Button";
             this.cookies_Button.Size = new System.Drawing.Size(103, 19);
@@ -93,7 +97,7 @@
             // searches_Button
             // 
             this.searches_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searches_Button.Location = new System.Drawing.Point(811, 83);
+            this.searches_Button.Location = new System.Drawing.Point(891, 83);
             this.searches_Button.Margin = new System.Windows.Forms.Padding(2);
             this.searches_Button.Name = "searches_Button";
             this.searches_Button.Size = new System.Drawing.Size(103, 19);
@@ -105,7 +109,7 @@
             // browsing_Button
             // 
             this.browsing_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.browsing_Button.Location = new System.Drawing.Point(811, 107);
+            this.browsing_Button.Location = new System.Drawing.Point(891, 107);
             this.browsing_Button.Margin = new System.Windows.Forms.Padding(2);
             this.browsing_Button.Name = "browsing_Button";
             this.browsing_Button.Size = new System.Drawing.Size(103, 21);
@@ -117,7 +121,7 @@
             // autofills_Button
             // 
             this.autofills_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.autofills_Button.Location = new System.Drawing.Point(811, 134);
+            this.autofills_Button.Location = new System.Drawing.Point(891, 134);
             this.autofills_Button.Margin = new System.Windows.Forms.Padding(2);
             this.autofills_Button.Name = "autofills_Button";
             this.autofills_Button.Size = new System.Drawing.Size(103, 19);
@@ -129,7 +133,7 @@
             // all_Button
             // 
             this.all_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.all_Button.Location = new System.Drawing.Point(812, 157);
+            this.all_Button.Location = new System.Drawing.Point(892, 157);
             this.all_Button.Margin = new System.Windows.Forms.Padding(2);
             this.all_Button.Name = "all_Button";
             this.all_Button.Size = new System.Drawing.Size(103, 38);
@@ -141,7 +145,7 @@
             // timelineButton
             // 
             this.timelineButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.timelineButton.Location = new System.Drawing.Point(811, 203);
+            this.timelineButton.Location = new System.Drawing.Point(891, 203);
             this.timelineButton.Margin = new System.Windows.Forms.Padding(2);
             this.timelineButton.Name = "timelineButton";
             this.timelineButton.Size = new System.Drawing.Size(103, 38);
@@ -153,7 +157,7 @@
             // IncoherenciesButton
             // 
             this.IncoherenciesButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.IncoherenciesButton.Location = new System.Drawing.Point(812, 245);
+            this.IncoherenciesButton.Location = new System.Drawing.Point(892, 245);
             this.IncoherenciesButton.Margin = new System.Windows.Forms.Padding(2);
             this.IncoherenciesButton.Name = "IncoherenciesButton";
             this.IncoherenciesButton.Size = new System.Drawing.Size(103, 38);
@@ -165,7 +169,7 @@
             // domainsButton
             // 
             this.domainsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.domainsButton.Location = new System.Drawing.Point(812, 287);
+            this.domainsButton.Location = new System.Drawing.Point(892, 287);
             this.domainsButton.Margin = new System.Windows.Forms.Padding(2);
             this.domainsButton.Name = "domainsButton";
             this.domainsButton.Size = new System.Drawing.Size(103, 38);
@@ -177,7 +181,7 @@
             // chooseLocationButton
             // 
             this.chooseLocationButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.chooseLocationButton.Location = new System.Drawing.Point(816, 344);
+            this.chooseLocationButton.Location = new System.Drawing.Point(896, 515);
             this.chooseLocationButton.Name = "chooseLocationButton";
             this.chooseLocationButton.Size = new System.Drawing.Size(99, 28);
             this.chooseLocationButton.TabIndex = 11;
@@ -188,7 +192,7 @@
             // resetLocationButton
             // 
             this.resetLocationButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.resetLocationButton.Location = new System.Drawing.Point(817, 378);
+            this.resetLocationButton.Location = new System.Drawing.Point(897, 549);
             this.resetLocationButton.Name = "resetLocationButton";
             this.resetLocationButton.Size = new System.Drawing.Size(98, 30);
             this.resetLocationButton.TabIndex = 12;
@@ -200,7 +204,7 @@
             // 
             this.locationLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.locationLabel.AutoSize = true;
-            this.locationLabel.Location = new System.Drawing.Point(844, 410);
+            this.locationLabel.Location = new System.Drawing.Point(924, 581);
             this.locationLabel.Name = "locationLabel";
             this.locationLabel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.locationLabel.Size = new System.Drawing.Size(44, 13);
@@ -208,11 +212,29 @@
             this.locationLabel.Text = "location";
             this.locationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 330);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(878, 249);
+            this.dataGridView1.TabIndex = 14;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
+            // 
+            // searchDTOBindingSource
+            // 
+            this.searchDTOBindingSource.DataSource = typeof(DTO.SearchDTO);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(923, 427);
+            this.ClientSize = new System.Drawing.Size(1003, 598);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.locationLabel);
             this.Controls.Add(this.resetLocationButton);
             this.Controls.Add(this.chooseLocationButton);
@@ -230,6 +252,8 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "BrowserForensics";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchDTOBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -252,6 +276,8 @@
         private System.Windows.Forms.Button resetLocationButton;
         private System.Windows.Forms.Label locationLabel;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.BindingSource searchDTOBindingSource;
     }
 }
 

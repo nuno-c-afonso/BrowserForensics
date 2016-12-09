@@ -11,6 +11,11 @@ namespace DTO {
         string password;
         string domain = "";
 
+        public String Url { get { return url; } }
+        public String Username { get { return username; } }
+        public String Password { get { return password; } }
+        public String Domain { get { return domain; } }
+
         public PasswordDTO(string time, string browser, string url, string username, string password): base(time, browser) {
             this.url = url;
             this.username = username;

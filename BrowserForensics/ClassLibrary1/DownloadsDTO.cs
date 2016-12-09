@@ -11,6 +11,11 @@ namespace DTO {
         string file;
         string domain = "";
 
+        public String File { get { return file; } }
+        public String URL { get { return url; }  }
+        public String Domain { get { return domain; } }
+        public String Path { get { return path; } }
+
         public DownloadsDTO(string time, string browser, string url, string path, string file): base(time, browser) {
             this.url = url;
             this.path =path;

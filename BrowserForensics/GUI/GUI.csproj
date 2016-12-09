@@ -69,6 +69,13 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Properties\DataSources\DTO.AutofillDTO.datasource" />
+    <None Include="Properties\DataSources\DTO.CookiesDTO.datasource" />
+    <None Include="Properties\DataSources\DTO.DownloadsDTO.datasource" />
+    <None Include="Properties\DataSources\DTO.DTObject.datasource" />
+    <None Include="Properties\DataSources\DTO.HistoryDTO.datasource" />
+    <None Include="Properties\DataSources\DTO.PasswordDTO.datasource" />
+    <None Include="Properties\DataSources\DTO.SearchDTO.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -90,6 +97,10 @@
     <ProjectReference Include="..\ChromeAnalyzer\ChromeAnalyzer.csproj">
       <Project>{e3da1157-cb3c-4587-b928-ff722777b731}</Project>
       <Name>ChromeAnalyzer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLibrary1\DTOs.csproj">
+      <Project>{2c872a50-5df8-4ee6-8c24-914c407dcfb0}</Project>
+      <Name>DTOs</Name>
     </ProjectReference>
     <ProjectReference Include="..\Controller\Controller.csproj">
       <Project>{dc20ff2b-4ece-4818-b1f5-1c82ed654f4f}</Project>

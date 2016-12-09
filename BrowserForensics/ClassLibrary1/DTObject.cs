@@ -9,6 +9,10 @@ namespace DTO {
         string time;
         string browser;
 
+        public String Date { get { return time; } }
+        public String Browser { get { return browser; } }
+
+
         public DTObject(string time, string browser) {
             this.time = time;
             this.browser = browser;

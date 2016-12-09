@@ -9,6 +9,10 @@ namespace DTO {
         string url;
         string domain = "";
 
+        public String Url { get { return url; } }
+
+        public String Domain { get { return domain; } }
+
         public HistoryDTO(string time, string browser, string url) : base(time, browser) {
             this.url = url;
             if (url != null && url != "") {

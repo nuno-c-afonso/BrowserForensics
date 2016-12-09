@@ -10,6 +10,9 @@ namespace DTO {
         string value;
         string fieldname;
 
+        public String FieldName { get { return fieldname; } }
+        public String Value { get { return value; } }
+
         public AutofillDTO(string time, string browser, string value, string fieldname) : base(time, browser) {
             this.value = value;
             this.fieldname = fieldname;

@@ -10,6 +10,9 @@ namespace DTO {
         string location ;
         string term;
 
+        public String Term { get { return term; } }
+        public String Location { get { return location; } }
+
         public SearchDTO(string time, string browser, string term, string location) : base(time, browser) {
             this.term = term;
             this.location = location;
