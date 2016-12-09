@@ -8,24 +8,26 @@ namespace ChromeAnalyzer
 {
     public class ChromeAnalyzer : BrowserAnalyzer.BrowserAnalyzer {
         private static string defaultPath = @"C:\Users\" + Environment.UserName +
-                                            @"\AppData\Local\Google";
+                                            @"\AppData";
+
+        private static string chromeRelativePath = @"\Local\Google\Chrome\User Data\Profile 2";
 
         public ChromeAnalyzer(string location) :
-            base(new ChromePasswordsAnalyzer(location + @"\Chrome\User Data\Default\Login Data"),
-            new ChromeCookiesAnalyzer(location + @"\Chrome\User Data\Default\Cookies"),
-            new ChromeDownloadHistoryAnalyzer(location + @"\Chrome\User Data\Default\History"),
-            new ChromeSearchHistoryAnalyzer(location + @"\Chrome\User Data\Default\History"),
-            new ChromeBrowserHistoryAnalyzer(location + @"\Chrome\User Data\Default\History"),
-            new ChromeAutofillAnalyzer(location + @"\Chrome\User Data\Default\Web Data"),
-            location) { }
+            base(new ChromePasswordsAnalyzer(location + chromeRelativePath + @"\Login Data"),
+            new ChromeCookiesAnalyzer(location + chromeRelativePath + @"\Cookies"),
+            new ChromeDownloadHistoryAnalyzer(location + chromeRelativePath + @"\History"),
+            new ChromeSearchHistoryAnalyzer(location + chromeRelativePath + @"\History"),
+            new ChromeBrowserHistoryAnalyzer(location + chromeRelativePath + @"\History"),
+            new ChromeAutofillAnalyzer(location  + chromeRelativePath + @"\Web Data"),
+            location) { Console.WriteLine("ON CHROME " + location + chromeRelativePath); }
 
         public ChromeAnalyzer() :
-            base(new ChromePasswordsAnalyzer(defaultPath + @"\Chrome\User Data\Default\Login Data"),
-            new ChromeCookiesAnalyzer(defaultPath + @"\Chrome\User Data\Default\Cookies"),
-            new ChromeDownloadHistoryAnalyzer(defaultPath + @"\Chrome\User Data\Default\History"),
-            new ChromeSearchHistoryAnalyzer(defaultPath + @"\Chrome\User Data\Default\History"),
-            new ChromeBrowserHistoryAnalyzer(defaultPath + @"\Chrome\User Data\Default\History"),
-            new ChromeAutofillAnalyzer(defaultPath + @"\Chrome\User Data\Default\Web Data"),
-            defaultPath) { }
+            base(new ChromePasswordsAnalyzer(defaultPath + chromeRelativePath + @"\Login Data"),
+            new ChromeCookiesAnalyzer(defaultPath + chromeRelativePath + @"\Cookies"),
+            new ChromeDownloadHistoryAnalyzer(defaultPath + chromeRelativePath + @"\History"),
+            new ChromeSearchHistoryAnalyzer(defaultPath + chromeRelativePath + @"\History"),
+            new ChromeBrowserHistoryAnalyzer(defaultPath + chromeRelativePath + @"\History"),
+            new ChromeAutofillAnalyzer(defaultPath + chromeRelativePath + @"\Web Data"),
+            defaultPath) { Console.WriteLine("ON CHROME " + defaultPath + chromeRelativePath); }
     }
 }

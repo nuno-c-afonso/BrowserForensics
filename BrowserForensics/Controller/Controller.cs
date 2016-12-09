@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DTO;
+using System.Diagnostics;
 
 namespace Controller {
     public class Controller {
@@ -14,17 +15,17 @@ namespace Controller {
             // Add the wanted browsers analyzers
             // TODO: Ask for the directory. If none, choose the default one.
             if (location == null) {
-                try {
-                    analyzers.Add(new ChromeAnalyzer.ChromeAnalyzer());
-                } catch (Exception e) { Console.WriteLine("Chrome File not found"); }
+                //try {
+                //    analyzers.Add(new ChromeAnalyzer.ChromeAnalyzer());
+                //} catch (Exception e) { Console.WriteLine("Chrome File not found"); }
                 try {
                     analyzers.Add(new FirefoxAnalyser.FirefoxAnalyzer());
                 } catch (Exception e) { Console.WriteLine("FIREFOX File not found"); }
             }
             else {
-                try {
-                    analyzers.Add(new ChromeAnalyzer.ChromeAnalyzer(location));
-                } catch (Exception e) { Console.WriteLine("Chrome File not found"); }
+                //try {
+                //    analyzers.Add(new ChromeAnalyzer.ChromeAnalyzer(location));
+                //} catch (Exception e) { Console.WriteLine("Chrome File not found"); }
                 try {
                     analyzers.Add(new FirefoxAnalyser.FirefoxAnalyzer(location));
                 }catch(Exception e) { Console.WriteLine("FIREFOX File not found"); }
@@ -32,63 +33,73 @@ namespace Controller {
         }
 
         public string getDownloads() {
-            string res = "--------DOWNLOADS--------\r\n";
+            StringBuilder sb = new StringBuilder("--------DOWNLOADS--------\r\n");
             foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers)
                 foreach (DownloadsDTO dto in ba.getDownloads())
-                    res += dto.getFullString();
-            return res;
+                    sb.Append(dto.getFullString());
+            return sb.ToString();
+        }
+
+        public List<DownloadsDTO> getDownloadsDTOList()
+        {
+            List<DownloadsDTO> ldto = new List<DownloadsDTO>();
+            foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers)
+                foreach (DownloadsDTO dto in ba.getDownloads())
+                    ldto.Add(dto);
+            return ldto;
         }
 
         public string getPasswords() {
-            string res = "--------PASSWORDS--------\r\n";
+            StringBuilder sb = new StringBuilder("--------PASSWORDS--------\r\n");
             foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers)
                 foreach(PasswordDTO dto in ba.getPasswords())
-                    res += dto.getFullString();
-            return res;
+                    sb.Append(dto.getFullString());
+            return sb.ToString();
         }
 
         public string getCookies() {
-            string res = "--------COOKIES--------\r\n";
+            StringBuilder sb = new StringBuilder("--------COOKIES--------\r\n");
             foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers)
                 foreach(CookiesDTO dto in ba.getCookies())
-                    res += dto.getFullString();
-            return res;
+                    sb.Append(dto.getFullString());
+            return sb.ToString();
         }
 
         public string getSearches() {
-            string res = "--------SEARCHES--------\r\n";
+            StringBuilder sb = new StringBuilder("--------SEARCHES--------\r\n");
             foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers)
                 foreach(SearchDTO dto in ba.getSearches())
-                    res += dto.getFullString();
-            return res;
+                    sb.Append(dto.getFullString());
+            return sb.ToString();
         }
 
         public string getHistory() {
-            string res = "--------BROWSING--------\r\n";
-            foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers)
-                foreach(HistoryDTO dto in ba.getHistory())
-                    res += dto.getFullString();
-            return res;
+            StringBuilder sb = new StringBuilder("--------BROWSING--------\r\n");
+            foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers)  
+                foreach (HistoryDTO dto in ba.getHistory())
+                    sb.Append(dto.getFullString());
+        
+            return sb.ToString();
         }
 
         public string getAutofills() {
-            string res = "--------AUTOFILLS--------\r\n";
+            StringBuilder sb = new StringBuilder("--------AUTOFILLS--------\r\n");
             foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers)
                 foreach(AutofillDTO dto in ba.getAutofills())
-                    res += dto.getFullString(); 
-            return res;
+                    sb.Append(dto.getFullString()); 
+            return sb.ToString();
         }
 
         public string getAllInfo() {
-            string res = "";
-            try{   res += getDownloads();            } catch (Exception e) {}
-            try{   res += "\r\n" + getPasswords();   } catch (Exception e) {}
-            try{   res += "\r\n" + getCookies();     } catch (Exception e) {}
-            try{   res += "\r\n" + getSearches();    } catch (Exception e) {}
-            try{   res += "\r\n" + getHistory();     } catch (Exception e) {}
-            try{   res += "\r\n" + getAutofills();   } catch (Exception e) {}
+            StringBuilder sb = new StringBuilder();
+            try{ sb.Append(getDownloads());            } catch (Exception e) {}
+            try{ sb.Append("\r\n" + getPasswords());   } catch (Exception e) {}
+            try{ sb.Append("\r\n" + getCookies());     } catch (Exception e) {}
+            try{ sb.Append("\r\n" + getSearches());    } catch (Exception e) {}
+            try{ sb.Append("\r\n" + getHistory());     } catch (Exception e) {}
+            try{ sb.Append("\r\n" + getAutofills());   } catch (Exception e) {}
 
-            return res;
+            return sb.ToString();
         }
 
         public string getTimeline() {
@@ -121,15 +132,16 @@ namespace Controller {
                 } catch (Exception e) {}   
             }
             l.Sort();
-            string result = "";
+            StringBuilder sb = new StringBuilder();
             foreach (string s in l)
-                result += s ;
-            return result;
+                sb.Append(s);
+            return sb.ToString();
         }
 
         public string detectIncoherencies() {
-            string result = "";
+            StringBuilder sb = new StringBuilder();
             List<string> l = new List<string>();
+            List<string> l2 = new List<string>();
 
 
             foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers) {
@@ -139,43 +151,64 @@ namespace Controller {
                     history.Add(new string[] { dto.getTime(), dto.getDomain() });
                 foreach (CookiesDTO dto in ba.getCookies())
                     cookies.Add(new string[] { dto.getTime(), dto.getDomain() });
-            
-                history = history.ToList().OrderBy(o => o[0]).ToList();
-                cookies = cookies.ToList().OrderBy(o => o[0]).ToList();
 
-                List<string[]> history2 = new List<string[]>();
-                string[] prev = { "x", "x" };
-                foreach (string[] x in history)
-                    if (x[0] != prev[0] || x[0] != prev[0]) {
-                        history2.Add(x);
-                        prev = x;
-                    }
+                //history = history.ToList().OrderBy(o => o[0]).ToList();
+                //cookies = cookies.ToList().OrderBy(o => o[0]).ToList();
 
-                List<string[]> cookies2 = new List<string[]>();
-                prev =new string[] { "x", "x" };
-                foreach (string[] x in cookies)
-                    if (x[0] != prev[0] || x[0] != prev[0]) {
-                        cookies2.Add(x);
-                        prev = x;
-                    }
-  
-                Boolean found = false;
-                foreach (string[] cookie in cookies2) {
-                    found = false;
-                    foreach (string[] visit in history2)
+                //List<string[]> history2 = new List<string[]>();
+                //string[] prev = { "x", "x" };
+                //foreach (string[] x in history)
+                //    if (x[0] != prev[0] || x[0] != prev[0])
+                //    {
+                //        history2.Add(x);
+                //        prev = x;
+                //    }
+
+                //List<string[]> cookies2 = new List<string[]>();
+                //prev = new string[] { "x", "x" };
+                //foreach (string[] x in cookies)
+                //    if (x[0] != prev[0] || x[0] != prev[0])
+                //    {
+                //        cookies2.Add(x);
+                //        prev = x;
+                //    }
+
+
+                var distinctItemsHistory = history.GroupBy(x => x[1]).Select(y => y.First());
+                var distinctItemsCookies = cookies.GroupBy(x => x[1]).Select(y => y.First());
+
+                var sw = Stopwatch.StartNew();
+
+
+
+                Console.WriteLine("Using Parallel.ForEach");
+                object sync = new Object();
+                Parallel.ForEach(distinctItemsCookies, cookie =>
+                {
+                    Boolean found2 = false;
+                    foreach (string[] visit in distinctItemsHistory)
                         if (visit[1].EndsWith(cookie[1]))
-                            found = true;
-                    if (!found)
-                        l.Add(cookie[1]);
-
+                            found2 = true;
+                    lock (sync)
+                    {
+                        if (!found2)
+                            l.Add(cookie[1]);
+                    }
                 }
+                );
                 l = l.Distinct().ToList();
+                l.Sort();
+                Console.WriteLine("Parallel.ForEach() execution time = {0} seconds", sw.Elapsed.TotalSeconds);
+
+                
+                
             }
 
-            result += "-->Have been found cookies for the next domains that are not in the history:\r\n";
+
+            sb.Append("-->Have been found cookies for the next domains that are not in the history:\r\n");
             foreach (string s in l)
-                result += s+ "\r\n";
-            return result;
+                sb.Append(s + "\r\n");
+            return sb.ToString();
 
         }
 
@@ -196,23 +229,25 @@ namespace Controller {
                     l.Add(dto.getDomain());
             }
 
+            //l.Sort();
+
+            //List<string> lout = new List<string>();
+            //string prev = "";
+            //foreach (string x in l)
+            //    if (x != prev) {
+            //        lout.Add(x);
+            //        prev = x;
+            //    }
+
+            l = l.Distinct().ToList();
             l.Sort();
 
-            List<string> lout = new List<string>();
-            string prev = "";
-            foreach (string x in l)
-                if (x != prev) {
-                    lout.Add(x);
-                    prev = x;
-                }
+            StringBuilder sb = new StringBuilder("-->All the Domains found in browser \r\n");
 
-            string result = "-->All the Domains found in browser \r\n";
+            foreach (string s in l)
+                sb.Append(s + "\r\n");
 
-            foreach (string s in lout)
-                result += s + "\r\n";
-
-            return result;
-
+            return sb.ToString();
 
 
         }

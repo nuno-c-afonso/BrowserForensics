@@ -30,9 +30,25 @@ namespace ChromeAnalyzer {
                 List<HistoryDTO> output = new List<HistoryDTO>();
                 try {
                     queryResult = client.select(QUERY);
+                    var rows = queryResult.Rows;
+                    Console.WriteLine("Have " + rows.Count + " to process");
 
-                    foreach (DataRow r in queryResult.Rows)
+                    int partes = (int)(rows.Count * 0.10f);
+                    int percentagem = 0;
+                    int i = 0;
+                    foreach (DataRow r in rows)
+                    {
+                        i++;
+                        if(i % partes == 0)
+                        {
+                            percentagem += 10;
+                            Console.WriteLine("Ja vou a " + percentagem + "%");
+                        }
+                           
+
                         output.Add(new HistoryDTO("" + r["date"], "Chrome", "" + r["url"]));
+                    }
+                        
 
                 } catch (System.Data.SQLite.SQLiteException e) {
                     Console.WriteLine(location + " not Found");

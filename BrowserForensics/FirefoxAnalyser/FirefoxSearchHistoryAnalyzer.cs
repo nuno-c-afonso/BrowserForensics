@@ -40,6 +40,7 @@ namespace FirefoxAnalyzer {
                     Console.WriteLine(location + " not Found");
                     client.dbConnection.Close();
                 }
+                outputDTOs = outputDTOs.OrderBy(o => o.getTime()).ToList();
                 result = outputDTOs;
             }
 

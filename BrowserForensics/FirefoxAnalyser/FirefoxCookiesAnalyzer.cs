@@ -34,6 +34,8 @@ namespace FirefoxAnalyzer {
                     Console.WriteLine(location + " not Found");
                     client.dbConnection.Close();
                 }
+                //output = output.OrderBy(o => o.getDomain()).ThenBy(o => o.getTime()).ToList();
+                output = output.OrderByDescending(o => o.getTime()).ToList();
                 result = output;
             }
             return result;

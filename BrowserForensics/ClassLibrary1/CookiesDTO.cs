@@ -24,7 +24,7 @@ namespace DTO {
         }
 
         public string getSmallString() {
-            return getTime() + " " + getType() + " " + "domain: " + domain + "\r\n" ;
+            return getTime() + " " + getType() + " " + "domain: " + domain  +"\r\n" ;
         }
 
         public override string getType() {
@@ -33,6 +33,11 @@ namespace DTO {
         public override string getInfo() {
             return "domain: "+domain + "\r\n" + " Value:" + value + "\r\n";
         }
-        
+
+        public string getExpiration()
+        {
+            return expiration;
+        }
+
     }
 }

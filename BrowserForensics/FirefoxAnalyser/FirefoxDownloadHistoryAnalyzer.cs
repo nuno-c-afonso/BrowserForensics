@@ -17,6 +17,10 @@ namespace FirefoxAnalyzer {
         public FirefoxDownloadHistoryAnalyzer(string location) {
             client = new SQLite.Client(location);
             this.location = location;
+
+
+
+            Console.WriteLine("FF DOWNLOADS location:" + location);
         }
 
         public List<DownloadsDTO>  getDownloads() {
