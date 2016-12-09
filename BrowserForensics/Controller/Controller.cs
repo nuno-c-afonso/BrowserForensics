@@ -86,8 +86,7 @@ namespace Controller {
         {
             List<DownloadsDTO> ldto = new List<DownloadsDTO>();
             foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers)
-                foreach (DownloadsDTO dto in ba.getDownloads())
-                    ldto.Add(dto);
+                ldto.AddRange(ba.getDownloads());
             return ldto;
         }
 
@@ -95,8 +94,7 @@ namespace Controller {
         {
             List<PasswordDTO> ldto = new List<PasswordDTO>();
             foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers)
-                foreach (PasswordDTO dto in ba.getPasswords())
-                    ldto.Add(dto);
+                ldto.AddRange(ba.getPasswords());
             return ldto;
         }
 
@@ -104,8 +102,7 @@ namespace Controller {
         {
             List<CookiesDTO> ldto = new List<CookiesDTO>();
             foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers)
-                foreach (CookiesDTO dto in ba.getCookies())
-                    ldto.Add(dto);
+                ldto.AddRange(ba.getCookies());
             return ldto;
         }
 
@@ -113,8 +110,7 @@ namespace Controller {
         {
             List<SearchDTO> ldto = new List<SearchDTO>();
             foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers)
-                foreach (SearchDTO dto in ba.getSearches())
-                    ldto.Add(dto);
+                ldto.AddRange(ba.getSearches());
             return ldto;
         }
 
@@ -122,9 +118,7 @@ namespace Controller {
         {
             List<HistoryDTO> ldto = new List<HistoryDTO>();
             foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers)
-                foreach (HistoryDTO dto in ba.getHistory())
-                    ldto.Add(dto);
-
+                ldto.AddRange(ba.getHistory());
             return ldto;
         }
 
@@ -132,8 +126,7 @@ namespace Controller {
         {
             List<AutofillDTO> ldto = new List<AutofillDTO>();
             foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers)
-                foreach (AutofillDTO dto in ba.getAutofills())
-                    ldto.Add(dto);
+                ldto.AddRange(ba.getAutofills());
             return ldto;
         }
 

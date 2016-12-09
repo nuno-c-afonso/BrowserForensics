@@ -30,6 +30,7 @@ namespace BrowserAnalyzer
 
         public List<PasswordDTO> getPasswords() {
             List<PasswordDTO> res = pass.getPasswords();
+            if (res == null) res = new List<PasswordDTO>();
             //if (res.Count == 0)
             //    res.Add("There are no stored passwords.");
             return res;
@@ -37,6 +38,7 @@ namespace BrowserAnalyzer
 
         public List<CookiesDTO> getCookies() {
             List<CookiesDTO> res = cookies.getCookies();
+            if (res == null) res = new List<CookiesDTO>();
             //if (res.Count == 0)
             //    res.Add("There are no stored cookies.");
             return res;
@@ -44,13 +46,15 @@ namespace BrowserAnalyzer
 
         public List<DownloadsDTO> getDownloads() {
             List<DownloadsDTO> res = downloads.getDownloads();
+            if (res == null) res = new List<DownloadsDTO>();
             //if (res.Count == 0)
-                //res.Add("There are no stored downloads.");
+            //res.Add("There are no stored downloads.");
             return res;
         }
 
         public List<SearchDTO> getSearches() {
             List<SearchDTO> res = searches.getSearches();
+            if (res == null) res = new List<SearchDTO>();
             //if (res.Count == 0)
             //    res.Add("There are no stored searches.");
             return res;
@@ -58,13 +62,15 @@ namespace BrowserAnalyzer
 
         public List<HistoryDTO> getHistory() {
             List<HistoryDTO> res = history.getHistory();
+            if (res == null) res = new List<HistoryDTO>();
             //if (res.Count == 0)
-                //res.Add("There is no stored browsing history.");
+            //res.Add("There is no stored browsing history.");
             return res;
         }
 
         public List<AutofillDTO> getAutofills() {
             List<AutofillDTO> res = autofill.getAutofills();
+            if (res == null) res = new List<AutofillDTO>();
             //if (res.Count == 0)
             //    res.Add("There is no stored autofill history.");
             return res;

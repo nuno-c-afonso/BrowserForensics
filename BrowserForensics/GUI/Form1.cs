@@ -20,6 +20,7 @@ namespace GUI {
             c = first;
 
             locationLabel.Text = "";
+            labelFound.Text = "";
         }
 
         private void helpfulMethodDataGrid()
@@ -80,7 +81,7 @@ namespace GUI {
             //dataGridView1.DataSource = columns.ToList();
 
             SortableBindingList<DownloadsDTO> downloads = new SortableBindingList<DownloadsDTO>(Lstemp);
-
+            labelFound.Text = "Found " + Lstemp.Count + " entries";
 
             var bindingList = new BindingList<DownloadsDTO>(Lstemp);
             var source = new BindingSource(downloads, null);
@@ -97,6 +98,8 @@ namespace GUI {
 
             var Lstemp = c.getPasswordsDTOList();
             SortableBindingList<PasswordDTO> downloads = new SortableBindingList<PasswordDTO>(Lstemp);
+            labelFound.Text = "Found " + Lstemp.Count + " entries";
+
             var bindingList = new BindingList<PasswordDTO>(Lstemp);
             var source = new BindingSource(downloads, null);
 
@@ -110,6 +113,8 @@ namespace GUI {
 
             var Lstemp = c.getCookiesDTOList();
             SortableBindingList<CookiesDTO> downloads = new SortableBindingList<CookiesDTO>(Lstemp);
+            labelFound.Text = "Found " + Lstemp.Count + " entries";
+
             var bindingList = new BindingList<CookiesDTO>(Lstemp);
             var source = new BindingSource(downloads, null);
 
@@ -123,6 +128,8 @@ namespace GUI {
 
             var Lstemp = c.getSearchesDTOList();
             SortableBindingList<SearchDTO> downloads = new SortableBindingList<SearchDTO>(Lstemp);
+            labelFound.Text = "Found " + Lstemp.Count + " entries";
+
             var bindingList = new BindingList<SearchDTO>(Lstemp);
             var source = new BindingSource(downloads, null);
 
@@ -135,6 +142,8 @@ namespace GUI {
 
             var Lstemp = c.getHistoryDTOList();
             SortableBindingList<HistoryDTO> downloads = new SortableBindingList<HistoryDTO>(Lstemp);
+            labelFound.Text = "Found " + Lstemp.Count + " entries";
+
             var bindingList = new BindingList<HistoryDTO>(Lstemp);
             var source = new BindingSource(downloads, null);
 
@@ -147,6 +156,8 @@ namespace GUI {
 
             var Lstemp = c.getAutofillsDTOList();
             SortableBindingList<AutofillDTO> downloads = new SortableBindingList<AutofillDTO>(Lstemp);
+            labelFound.Text = "Found " + Lstemp.Count + " entries";
+
             var bindingList = new BindingList<AutofillDTO>(Lstemp);
             var source = new BindingSource(downloads, null);
 
@@ -156,17 +167,21 @@ namespace GUI {
 
         private void all_Button_Click(object sender, EventArgs e) {
             Output.Text = c.getAllInfo();
+            dataGridView1.DataSource = null;
         }
 
         private void timelineButton_Click(object sender, EventArgs e) {
             Output.Text = c.getTimeline();
+            dataGridView1.DataSource = null;
         }
 
         private void incoherenciesButton_Click(object sender, EventArgs e) {
             Output.Text = c.detectIncoherencies();
+            dataGridView1.DataSource = null;
         }
         private void domainButton_Click(object sender, EventArgs e) {
             Output.Text = c.getAllDomains();
+            dataGridView1.DataSource = null;
         }
 
         private void chooseLocationButton_Click(object sender, EventArgs e)

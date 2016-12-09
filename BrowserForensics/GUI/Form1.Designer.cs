@@ -41,6 +41,7 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.searchDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.labelFound = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchDTOBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -229,11 +230,21 @@
             // 
             this.searchDTOBindingSource.DataSource = typeof(DTO.SearchDTO);
             // 
+            // labelFound
+            // 
+            this.labelFound.AutoSize = true;
+            this.labelFound.Location = new System.Drawing.Point(12, 581);
+            this.labelFound.Name = "labelFound";
+            this.labelFound.Size = new System.Drawing.Size(59, 13);
+            this.labelFound.TabIndex = 15;
+            this.labelFound.Text = "labelFound";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1003, 598);
+            this.Controls.Add(this.labelFound);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.locationLabel);
             this.Controls.Add(this.resetLocationButton);
@@ -278,6 +289,7 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingSource searchDTOBindingSource;
+        private System.Windows.Forms.Label labelFound;
     }
 }
 

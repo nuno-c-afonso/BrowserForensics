@@ -10,7 +10,7 @@ namespace ChromeAnalyzer
         private static string defaultPath = @"C:\Users\" + Environment.UserName +
                                             @"\AppData";
 
-        private static string chromeRelativePath = @"\Local\Google\Chrome\User Data\Profile 2";
+        private static string chromeRelativePath = @"\Local\Google\Chrome\User Data\Default";
 
         public ChromeAnalyzer(string location) :
             base(new ChromePasswordsAnalyzer(location + chromeRelativePath + @"\Login Data"),
