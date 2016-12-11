@@ -179,70 +179,65 @@ namespace Controller {
             return sb.ToString();
         }
 
+        private string StripStartAndDots(string item, string toRemove)
+        {
+            // Determine whether a tag begins the string.
+            if (item.Trim().StartsWith(toRemove))
+            {
+                item = item.Substring(toRemove.Length);
+            }
+            return item.TrimStart('.');
+        }
+
         public string detectIncoherencies() {
             StringBuilder sb = new StringBuilder();
             List<string> l = new List<string>();
-            List<string> l2 = new List<string>();
-
 
             foreach (BrowserAnalyzer.BrowserAnalyzer ba in analyzers) {
-                List<string[]> history = new List<string[]>();
-                List<string[]> cookies = new List<string[]>();
+
+                List<string> history_t = new List<string>();
+                List<string> cookies_t = new List<string>();
+
                 foreach (HistoryDTO dto in ba.getHistory())
-                    history.Add(new string[] { dto.getTime(), dto.getDomain() });
+                {
+                    history_t.Add(dto.getDomain());
+                }
+                
                 foreach (CookiesDTO dto in ba.getCookies())
-                    cookies.Add(new string[] { dto.getTime(), dto.getDomain() });
+                {
+                    cookies_t.Add(dto.getDomain());
+                }
 
-                //history = history.ToList().OrderBy(o => o[0]).ToList();
-                //cookies = cookies.ToList().OrderBy(o => o[0]).ToList();
+                history_t = history_t.Distinct().ToList();
+                cookies_t = cookies_t.Distinct().ToList();
 
-                //List<string[]> history2 = new List<string[]>();
-                //string[] prev = { "x", "x" };
-                //foreach (string[] x in history)
-                //    if (x[0] != prev[0] || x[0] != prev[0])
-                //    {
-                //        history2.Add(x);
-                //        prev = x;
-                //    }
-
-                //List<string[]> cookies2 = new List<string[]>();
-                //prev = new string[] { "x", "x" };
-                //foreach (string[] x in cookies)
-                //    if (x[0] != prev[0] || x[0] != prev[0])
-                //    {
-                //        cookies2.Add(x);
-                //        prev = x;
-                //    }
-
-
-                var distinctItemsHistory = history.GroupBy(x => x[1]).Select(y => y.First());
-                var distinctItemsCookies = cookies.GroupBy(x => x[1]).Select(y => y.First());
+                var cookies_no_dots = cookies_t.Select(x => StripStartAndDots(x, "www.")).Distinct();//.ToList();
 
                 var sw = Stopwatch.StartNew();
-
-
-
                 Console.WriteLine("Using Parallel.ForEach");
                 object sync = new Object();
-                Parallel.ForEach(distinctItemsCookies, cookie =>
+
+                Parallel.ForEach(cookies_no_dots, cookie =>
                 {
-                    Boolean found2 = false;
-                    foreach (string[] visit in distinctItemsHistory)
-                        if (visit[1].EndsWith(cookie[1]))
-                            found2 = true;
+                    Boolean found = false;
+                    foreach (string visit in history_t) {
+                        if (visit.EndsWith(cookie)) {
+                            found = true;
+                            break;
+                        }
+                    }
+
                     lock (sync)
                     {
-                        if (!found2)
-                            l.Add(cookie[1]);
+                        if (!found) l.Add(cookie);
                     }
                 }
                 );
                 l = l.Distinct().ToList();
                 l.Sort();
+                sw.Stop();
                 Console.WriteLine("Parallel.ForEach() execution time = {0} seconds", sw.Elapsed.TotalSeconds);
 
-                
-                
             }
 
 
@@ -280,7 +275,10 @@ namespace Controller {
             //        prev = x;
             //    }
 
-            l = l.Distinct().ToList();
+            // 2 Distincts so we dont use the StripStartAndDots on too many values first
+            l = l.Distinct().Select(x => StripStartAndDots(x, "www.")).Distinct().ToList();
+            //l = l.Distinct().ToList();
+
             l.Sort();
 
             StringBuilder sb = new StringBuilder("-->All the Domains found in browser \r\n");
