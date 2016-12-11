@@ -39,7 +39,7 @@ namespace ChromeAnalyzer {
                     foreach (DataRow r in rows)
                     {
                         i++;
-                        if(i % partes == 0)
+                        if (partes > 0 && (i % partes == 0))
                         {
                             percentagem += 10;
                             Console.WriteLine("Ja vou a " + percentagem + "%");
